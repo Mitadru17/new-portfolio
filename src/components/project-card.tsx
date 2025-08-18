@@ -13,8 +13,8 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ title, role, description, tech, imageUrl, imageHint }: ProjectCardProps) {
   return (
-    <div className="group">
-      <Card className="glowing-border h-full transform-gpu overflow-hidden bg-card transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20">
+    <div className="group [perspective:1000px]">
+      <Card className="glowing-border h-full transform-gpu overflow-hidden bg-card transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 group-hover:[transform:rotateX(4deg)]">
         <CardHeader>
           <CardTitle className="font-headline text-2xl text-primary">{title}</CardTitle>
           <CardDescription>{role}</CardDescription>
@@ -24,7 +24,7 @@ export default function ProjectCard({ title, role, description, tech, imageUrl, 
             <p className="text-muted-foreground">{description}</p>
             <div className="flex flex-wrap gap-2">
               {tech.map((item) => (
-                <Badge key={item} variant="secondary" className="border-accent/50 bg-accent/20 text-accent-foreground">
+                <Badge key={item} variant="secondary" className="border-accent/50 bg-accent/20 text-accent-foreground transition-all group-hover:scale-105 group-hover:bg-accent/30">
                   {item}
                 </Badge>
               ))}

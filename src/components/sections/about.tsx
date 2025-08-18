@@ -1,9 +1,12 @@
 
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import AnimatedHeading from "@/components/animated-heading";
 import { Cpu, Gamepad2, Lightbulb, Rocket, Clapperboard, Code } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useRef, useState } from "react";
 
 const skills = {
   "Frontend": [
@@ -37,6 +40,44 @@ const interests = [
   { icon: Code, text: "Open Source" },
 ];
 
+function SkillBar({ name, level }: { name: string, level: number }) {
+  const [progress, setProgress] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setProgress(level);
+        }
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [level]);
+
+  return (
+    <div ref={ref}>
+      <div className="mb-1 flex justify-between">
+        <p className="text-sm font-medium text-muted-foreground">{name}</p>
+        <p className="text-sm font-medium text-muted-foreground">{level}%</p>
+      </div>
+      <Progress value={progress} aria-label={`${name} proficiency`} />
+    </div>
+  )
+}
+
 export default function AboutSection() {
   return (
     <section id="about" className="container mx-auto max-w-7xl px-4">
@@ -58,13 +99,7 @@ export default function AboutSection() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {items.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="mb-1 flex justify-between">
-                      <p className="text-sm font-medium text-muted-foreground">{skill.name}</p>
-                      <p className="text-sm font-medium text-muted-foreground">{skill.level}%</p>
-                    </div>
-                    <Progress value={skill.level} aria-label={`${skill.name} proficiency`} />
-                  </div>
+                  <SkillBar key={skill.name} name={skill.name} level={skill.level} />
                 ))}
               </CardContent>
             </Card>
@@ -77,7 +112,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-3 lg:grid-cols-6">
           {interests.map((fact, index) => (
             <div key={index} className="flex flex-col items-center gap-3 rounded-lg border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-lg hover:border-primary/50">
-              <fact.icon className="h-10 w-10 text-accent" />
+              <fact.icon className="h-10 w-10 text-accent transition-transform group-hover:scale-110" />
               <p className="text-muted-foreground text-sm">{fact.text}</p>
             </div>
           ))}

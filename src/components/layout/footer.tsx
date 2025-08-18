@@ -7,7 +7,7 @@ export default function Footer() {
         <p className="font-headline text-lg text-foreground/80">Minimal Tech, Maximum Impact.</p>
         <div className="flex flex-col items-center gap-2 sm:items-end">
             <p>&copy; {new Date().getFullYear()} Mitadru Roy. All Rights Reserved.</p>
-            <p className="flex items-center gap-1 text-xs">Built at 2 AM <Moon className="h-3 w-3" /></p>
+            <p className="flex items-center gap-1 text-xs">Built at 2 AM <Moon className="h-3 w-3 animate-float" /></p>
         </div>
       </div>
     </footer>
