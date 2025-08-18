@@ -2,11 +2,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Rocket, Download } from "lucide-react";
 import AnimatedHeading from "@/components/animated-heading";
+import CosmicDust from "@/components/cosmic-dust";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <div className="stars"></div>
+    <section id="home" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background">
+      <CosmicDust className="absolute inset-0 w-full h-full object-cover" />
       <div className="container relative z-10 mx-auto px-4 text-center">
         <AnimatedHeading as="h1" text="Mitadru Roy" className="font-headline text-6xl font-bold tracking-tighter text-white drop-shadow-lg sm:text-8xl md:text-9xl" />
         <p className="mt-4 font-headline text-xl text-primary drop-shadow-md sm:text-2xl md:text-3xl">

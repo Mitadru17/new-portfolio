@@ -13,12 +13,12 @@ const navItems = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+    <header className="sticky top-4 inset-x-0 z-50 w-full flex justify-center">
+      <div className="w-fit flex h-16 items-center justify-between rounded-full bg-background/80 backdrop-blur-lg px-8 border border-border/40 shadow-lg">
         <Link href="/" className="font-headline text-2xl font-bold text-primary">
           MR
         </Link>
-        <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
+        <nav className="hidden items-center space-x-6 text-sm font-medium md:flex ml-6">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -29,7 +29,7 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ml-6">
           <Button asChild variant="outline" size="sm">
             <a href="/Mitadru_Roy_CV.pdf" download>
               <Download className="mr-2 h-4 w-4" />
