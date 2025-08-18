@@ -1,12 +1,30 @@
 import { Badge } from "@/components/ui/badge";
 import AnimatedHeading from "@/components/animated-heading";
 import { CookingPot, Moon, Target } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const skills = {
-  "Frontend": ["React.js", "Redux", "TailwindCSS", "Next.js"],
-  "Backend": ["Node.js", "Express.js", "MongoDB", "Firebase"],
-  "AI/ML": ["Python", "Hugging Face", "NLTK", "spaCy", "OpenAI API"],
-  "Tools": ["Git/GitHub", "AWS/GCP", "Vercel", "Netlify", "Cursor"],
+  "Frontend": [
+    { name: "React.js/Next.js", level: 95 },
+    { name: "Redux", level: 85 },
+    { name: "TailwindCSS", level: 90 },
+  ],
+  "Backend": [
+    { name: "Node.js/Express.js", level: 90 },
+    { name: "MongoDB", level: 80 },
+    { name: "Firebase", level: 85 },
+  ],
+  "AI/ML": [
+    { name: "Python", level: 90 },
+    { name: "Genkit/Gemini", level: 85 },
+    { name: "Hugging Face", level: 75 },
+  ],
+  "Tools": [
+    { name: "Git/GitHub", level: 95 },
+    { name: "AWS/GCP", level: 70 },
+    { name: "Vercel/Netlify", level: 90 },
+  ],
 };
 
 const funFacts = [
@@ -28,16 +46,24 @@ export default function AboutSection() {
 
       <div className="mb-12">
         <h3 className="mb-8 text-center font-headline text-3xl text-primary">My Skills</h3>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="rounded-lg border bg-card p-6">
-              <h4 className="mb-4 font-headline text-xl font-semibold">{category}</h4>
-              <div className="flex flex-wrap gap-2">
+            <Card key={category} className="bg-card/50">
+              <CardHeader>
+                <CardTitle className="font-headline text-xl font-semibold">{category}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
                 {items.map((skill) => (
-                  <Badge key={skill} variant="secondary">{skill}</Badge>
+                  <div key={skill.name}>
+                    <div className="mb-1 flex justify-between">
+                      <p className="text-sm font-medium text-muted-foreground">{skill.name}</p>
+                      <p className="text-sm font-medium text-muted-foreground">{skill.level}%</p>
+                    </div>
+                    <Progress value={skill.level} aria-label={`${skill.name} proficiency`} />
+                  </div>
                 ))}
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
