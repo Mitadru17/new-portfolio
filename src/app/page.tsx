@@ -1,4 +1,6 @@
+
 import AIEasterEgg from "@/components/ai-easter-egg";
+import FunFactsTerminal from "@/components/fun-facts-terminal";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import AboutSection from "@/components/sections/about";
@@ -20,6 +22,7 @@ export default function Home() {
       </main>
       <Footer />
       <AIEasterEgg />
+      <FunFactsTerminal />
     </div>
   );
 }
