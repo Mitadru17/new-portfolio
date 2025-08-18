@@ -33,18 +33,15 @@ const prompt = ai.definePrompt({
   name: 'generateProjectDescriptionPrompt',
   input: {schema: GenerateProjectDescriptionInputSchema},
   output: {schema: GenerateProjectDescriptionOutputSchema},
-  prompt: `You are an AI that generates a fun AI animation easter egg.
+  prompt: `You are an AI that generates a fun AI animation easter egg in SVG format.
 
   The animation should be triggered by the keyword: {{{keyword}}}.
 
-  Return the animation as a data URI that can be displayed on a web page.
+  The SVG should be a creative, abstract, and futuristic animation that is visually interesting. It should be a looping animation. The design should be minimalist and elegant, using a color palette that matches a professional tech portfolio (purples, teals, dark backgrounds).
 
-  The animation should creatively showcase AI skills.  Be creative and make it fun and interesting!
-
-  Be concise.  Do not include any text except for the data URI.
-
-  For now, just return a placeholder data URI.
-  data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7`,
+  Return the animation as a data URI (data:image/svg+xml;base64,...).
+  
+  Do not include any text, just the data URI in the output.`,
 });
 
 const generateProjectDescriptionFlow = ai.defineFlow(

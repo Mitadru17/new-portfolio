@@ -61,7 +61,7 @@ export default function AIEasterEgg() {
         <DialogHeader>
           <DialogTitle className="font-headline text-primary">AI Easter Egg Activated!</DialogTitle>
           <DialogDescription>
-            You&apos;ve discovered a hidden animation.
+            You've discovered a hidden animation.
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center justify-center p-4 min-h-[200px]">
