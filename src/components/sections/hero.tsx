@@ -1,38 +1,26 @@
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Rocket, Download } from "lucide-react";
 import AnimatedHeading from "@/components/animated-heading";
-import CosmicDust from "@/components/cosmic-dust";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background">
-      <CosmicDust className="absolute inset-0 w-full h-full object-cover" />
-      <div className="container relative z-10 mx-auto px-4 text-center">
+    <section id="home" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background pt-24">
+       <div className="container relative z-10 mx-auto px-4 text-center">
         <div className="animate-float">
-            <AnimatedHeading as="h1" text="Mitadru Roy" className="font-headline text-6xl font-bold tracking-tighter text-white drop-shadow-lg sm:text-8xl md:text-9xl" />
+            <h1 className="font-headline text-6xl font-bold tracking-tighter text-foreground drop-shadow-lg sm:text-7xl md:text-8xl">Mitadru Roy</h1>
         </div>
-        <p className="mt-4 font-headline text-xl text-primary drop-shadow-md sm:text-2xl md:text-3xl animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-          Building Tomorrow's Web, Today.
+        <p className="mt-4 font-headline text-xl text-muted-foreground drop-shadow-md sm:text-2xl md:text-3xl animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+          Designing through a different lens.
         </p>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
-          I'm a freelance full-stack developer and AI enthusiast, turning complex problems into elegant, high-performance digital solutions.
-        </p>
-        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Link href="#work">
-              <Rocket className="mr-2 h-5 w-5" />
-              Explore My Work
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <a href="/Mitadru_Roy_CV.pdf" download>
-              <Download className="mr-2 h-5 w-5" />
-              Download CV
-            </a>
-          </Button>
-        </div>
+      </div>
+      <div className="relative mt-12 w-full max-w-5xl aspect-[16/9]">
+        <Image 
+            src="https://placehold.co/1200x675.png" 
+            alt="Hero illustration" 
+            fill
+            className="object-contain"
+            data-ai-hint="personal illustration workspace"
+            />
       </div>
     </section>
   );

@@ -1,24 +1,37 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ThemeToggleButton } from "@/components/theme-toggle-button";
-import { Download } from "lucide-react";
+import { Button } from "../ui/button";
 
 const navItems = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Play", href: "#play" }, // Changed from Contact
 ];
 
 export default function Header() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
+    };
+    updateClock();
+    const intervalId = setInterval(updateClock, 1000 * 60); // Update every minute
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
-    <header className="sticky top-4 inset-x-0 z-50 w-full flex justify-center">
-      <div className="w-fit flex h-16 items-center justify-between rounded-full bg-background/80 backdrop-blur-lg px-8 border border-border/40 shadow-lg">
+    <header className="fixed top-4 inset-x-0 z-50 w-full flex justify-center">
+      <div className="w-full max-w-lg flex h-14 items-center justify-between rounded-full bg-background/60 backdrop-blur-lg px-6 border border-border/30 shadow-lg">
         <Link href="/" className="font-headline text-2xl font-bold text-primary">
           MR
         </Link>
-        <nav className="hidden items-center space-x-6 text-sm font-medium md:flex ml-6">
+        <nav className="hidden items-center space-x-8 text-sm font-medium md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -29,14 +42,9 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2 ml-6">
-          <Button asChild variant="outline" size="sm">
-            <a href="/Mitadru_Roy_CV.pdf" download>
-              <Download className="mr-2 h-4 w-4" />
-              CV
-            </a>
-          </Button>
+        <div className="flex items-center gap-4">
           <ThemeToggleButton />
+          <span className="text-sm text-muted-foreground font-medium hidden sm:inline">{time}</span>
         </div>
       </div>
     </header>
