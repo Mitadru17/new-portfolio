@@ -5,7 +5,8 @@ import AnimatedHeading from "@/components/animated-heading";
 import { 
   Cpu, Gamepad2, Lightbulb, Rocket, Clapperboard, Code, 
   Database, Globe, Zap, Brain, BarChart3, GitBranch,
-  Terminal, Settings, Cloud, Workflow, Shield, Monitor
+  Terminal, Settings, Cloud, Workflow, Shield, Monitor,
+  Briefcase, GraduationCap
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -62,12 +63,12 @@ const skillsData = {
 };
 
 const interests = [
-  { icon: Rocket, text: "Hackathons", color: "from-orange-500 to-red-500" },
-  { icon: Brain, text: "AI & Automation", color: "from-purple-500 to-pink-500" },
-  { icon: Gamepad2, text: "Gaming", color: "from-green-500 to-blue-500" },
-  { icon: Lightbulb, text: "Creative Problem Solving", color: "from-yellow-500 to-orange-500" },
-  { icon: Clapperboard, text: "Video Editing", color: "from-red-500 to-purple-500" },
-  { icon: Code, text: "Open Source", color: "from-blue-500 to-cyan-500" },
+  { icon: Code, text: "Open Source Contributing", color: "from-blue-500 to-cyan-500" },
+  { icon: Brain, text: "AI & Machine Learning", color: "from-purple-500 to-pink-500" },
+  { icon: Gamepad2, text: "Gaming (When Code Breaks)", color: "from-green-500 to-blue-500" },
+  { icon: Rocket, text: "Automation Experiments", color: "from-orange-500 to-red-500" },
+  { icon: Lightbulb, text: "Problem Solving", color: "from-yellow-500 to-orange-500" },
+  { icon: Clapperboard, text: "Side Hustles", color: "from-red-500 to-purple-500" },
 ];
 
 function EnhancedSkillBar({ name, level, icon, color, description }: { 
@@ -149,11 +150,128 @@ export default function AboutSection() {
 
       <div className="mx-auto max-w-4xl text-center mb-16">
         <p className="mb-8 text-lg text-muted-foreground leading-relaxed">
-          I'm a <span className="text-blue-400 font-semibold">aspiring full-stack web developer</span> from{' '}
-          <span className="text-purple-400 font-semibold">Bengaluru, Karnataka</span> who specializes in building dynamic web applications 
-          with <span className="text-pink-400 font-semibold">React, Node.js, and REST APIs</span>. Currently surviving engineering 
-          while trying to convince computers to do what I want them to do (success rate: approximately 60%).
+          I'm <span className="text-blue-400 font-semibold">Mitadru Roy</span>, a{' '}
+          <span className="text-purple-400 font-semibold">19-year-old aspiring Full Stack Web Developer</span> from{' '}
+          <span className="text-pink-400 font-semibold">Bangalore, India</span> who's somehow managed to convince 
+          computers to do my bidding (most of the time). Currently pursuing a{' '}
+          <span className="text-green-400 font-semibold">Bachelor of Engineering in Computer Science</span> from{' '}
+          <span className="text-cyan-400 font-semibold">JSS Academy of Technical Education Karnataka</span> 
+          while building dynamic web applications with{' '}
+          <span className="text-orange-400 font-semibold">React.js, Node.js, and RESTful APIs</span>.
         </p>
+        
+        <p className="mb-8 text-md text-muted-foreground leading-relaxed">
+          When I'm not debugging code at 3 AM or pretending to understand why my CSS isn't working, 
+          you'll find me contributing to open-source projects, building AI-powered applications that are 
+          smarter than me (which isn't saying much), or trying to explain to my family why I chose 
+          to talk to computers for a living. I specialize in creating secure authentication systems, 
+          interactive dashboards, and solutions that actually work on the first try (just kidding, 
+          nothing works on the first try).
+        </p>
+        
+        {/* Experience & Education */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12 text-left">
+          {/* Experience */}
+          <Card className="border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-950/50 dark:to-cyan-950/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                <Briefcase className="h-5 w-5" />
+                Experience (The Plot Thickens)
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="border-l-2 border-blue-200 dark:border-blue-800 pl-4">
+                <h4 className="font-semibold text-foreground">React Developer</h4>
+                <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">Glowbal Network • May 2025 - Present • London, England</p>
+                <ul className="text-sm text-muted-foreground mt-2 space-y-1">
+                  <li>• Developing dynamic React apps with Tailwind CSS (because regular CSS is apparently too mainstream)</li>
+                  <li>• Integrated secure authentication and interactive dashboards while ensuring mobile-first responsiveness</li>
+                  <li>• Following modular design, clean code, and GitHub best practices (shocking, I know)</li>
+                </ul>
+              </div>
+              <div className="border-l-2 border-blue-200 dark:border-blue-800 pl-4">
+                <h4 className="font-semibold text-foreground">Contributor</h4>
+                <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">GulScript Summer of Code • Sep 2024 - Nov 2024 • India</p>
+                <ul className="text-sm text-muted-foreground mt-2 space-y-1">
+                  <li>• Improved UI and added features for open-source projects using React, Tailwind CSS, and JavaScript</li>
+                  <li>• Enhanced user experience and project functionality (because someone has to make things look good)</li>
+                  <li>• Collaborated on GitHub, followed Agile practices, and gained experience in development workflows</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Education */}
+          <Card className="border-purple-200 dark:border-purple-800 bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-purple-950/50 dark:to-pink-950/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-purple-600 dark:text-purple-400">
+                <GraduationCap className="h-5 w-5" />
+                Education (The Academic Journey)
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="border-l-2 border-purple-200 dark:border-purple-800 pl-4">
+                <h4 className="font-semibold text-foreground">Bachelor of Engineering - BE, Computer Science</h4>
+                <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">JSS Academy of Technical Education Karnataka • Jan 2028 (Expected)</p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Currently learning how to make computers do math while questioning my life choices 
+                  (but hey, at least I can debug infinite loops now).
+                </p>
+              </div>
+              <div className="border-l-2 border-purple-200 dark:border-purple-800 pl-4">
+                <h4 className="font-semibold text-foreground">XII, Science</h4>
+                <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">West Bengal Council of Higher Secondary Education • Jan 2024</p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Survived high school science while secretly coding on the side 
+                  (because who needs sleep when you have Stack Overflow?).
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Certifications */}
+        <div className="mb-12">
+          <h3 className="mb-6 text-center font-headline text-2xl text-primary">Certifications (Proof I Actually Learned Something)</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Badge variant="outline" className="p-3 text-center bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/50 dark:to-red-950/50 border-orange-200 dark:border-orange-800">
+              <div>
+                <div className="font-semibold text-orange-600 dark:text-orange-400">🔒 Cybersecurity Analyst Job Simulation</div>
+                <div className="text-xs text-muted-foreground">Tata Group - Forage (Because someone needs to keep the hackers away)</div>
+              </div>
+            </Badge>
+            <Badge variant="outline" className="p-3 text-center bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/50 dark:to-blue-950/50 border-green-200 dark:border-green-800">
+              <div>
+                <div className="font-semibold text-green-600 dark:text-green-400">📊 Data Visualization: Empowering Business</div>
+                <div className="text-xs text-muted-foreground">Tata Group - Forage (Making charts that don't lie)</div>
+              </div>
+            </Badge>
+            <Badge variant="outline" className="p-3 text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 border-blue-200 dark:border-blue-800">
+              <div>
+                <div className="font-semibold text-blue-600 dark:text-blue-400">💻 Software Engineering Job Simulation</div>
+                <div className="text-xs text-muted-foreground">Walmart USA - Forage (Surviving corporate coding interviews)</div>
+              </div>
+            </Badge>
+            <Badge variant="outline" className="p-3 text-center bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/50 dark:to-purple-950/50 border-indigo-200 dark:border-indigo-800">
+              <div>
+                <div className="font-semibold text-indigo-600 dark:text-indigo-400">🔐 Fundamentals of Information Security</div>
+                <div className="text-xs text-muted-foreground">Infosys Springboard (Learning why passwords like '123456' are bad)</div>
+              </div>
+            </Badge>
+            <Badge variant="outline" className="p-3 text-center bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/50 dark:to-pink-950/50 border-purple-200 dark:border-purple-800">
+              <div>
+                <div className="font-semibold text-purple-600 dark:text-purple-400">🤖 AI for Students: Build Your Own Generative AI Model</div>
+                <div className="text-xs text-muted-foreground">NetWare (Teaching AI to be as sarcastic as me)</div>
+              </div>
+            </Badge>
+            <Badge variant="outline" className="p-3 text-center bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-950/50 dark:to-rose-950/50 border-pink-200 dark:border-pink-800">
+              <div>
+                <div className="font-semibold text-pink-600 dark:text-pink-400">🚀 The Web Developer Bootcamp 2024</div>
+                <div className="text-xs text-muted-foreground">Udemy (Where I learned JavaScript doesn't make sense)</div>
+              </div>
+            </Badge>
+          </div>
+        </div>
         
         {/* View Toggle */}
         <div className="flex justify-center mb-12">
@@ -247,23 +365,27 @@ export default function AboutSection() {
           ))}
         </div>
 
-        {/* Fun Stats */}
+        {/* Fun Stats (AKA Reality Check) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="text-center p-4 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20">
-            <div className="text-2xl font-bold text-blue-400">50+</div>
-            <div className="text-sm text-muted-foreground">Projects Built</div>
+            <div className="text-2xl font-bold text-blue-400">3</div>
+            <div className="text-sm text-muted-foreground">Major Projects</div>
+            <div className="text-xs text-muted-foreground/70">(That actually work)</div>
           </div>
           <div className="text-center p-4 rounded-lg bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/20">
-            <div className="text-2xl font-bold text-green-400">10+</div>
-            <div className="text-sm text-muted-foreground">Hackathons</div>
+            <div className="text-2xl font-bold text-green-400">6</div>
+            <div className="text-sm text-muted-foreground">Certifications</div>
+            <div className="text-xs text-muted-foreground/70">(Proof I can Google)</div>
           </div>
           <div className="text-center p-4 rounded-lg bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20">
-            <div className="text-2xl font-bold text-purple-400">5+</div>
-            <div className="text-sm text-muted-foreground">AI Models</div>
+            <div className="text-2xl font-bold text-purple-400">2</div>
+            <div className="text-sm text-muted-foreground">Work Experiences</div>
+            <div className="text-xs text-muted-foreground/70">(Real job references)</div>
           </div>
           <div className="text-center p-4 rounded-lg bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/20">
-            <div className="text-2xl font-bold text-orange-400">24/7</div>
-            <div className="text-sm text-muted-foreground">Learning Mode</div>
+            <div className="text-2xl font-bold text-orange-400">19</div>
+            <div className="text-sm text-muted-foreground">Years Old</div>
+            <div className="text-xs text-muted-foreground/70">(But feels like 40)</div>
           </div>
         </div>
 
