@@ -7,63 +7,64 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Eye } from "lucide-react";
 
 const featuredProject = {
-  id: "hiq",
-  title: "HiQ — Personalized Interview & Placement Training",
-  role: "Data Science Developer | NLP & Resume Analysis",
-  description: "An AI-powered system providing real-time NLP feedback on interview answers, resume scoring, and AI-driven Q&A to help students prepare for placements. This project showcases my ability to integrate complex AI models into a user-friendly application.",
-  tech: ["Python", "Hugging Face", "OpenAI API", "Node.js", "React", "NLP"],
+  id: "ai-therapist",
+  title: "AI Therapist — Because Human Therapists Aren't Available 24/7",
+  role: "Full-Stack Developer & Digital Psychologist",
+  description: "Built an AI-powered mental health companion that listens to your problems better than your friends. Features personality-based therapeutic approaches and the patience of a saint (unlike real therapists who charge by the hour).",
+  tech: ["React.js", "Node.js", "OpenAI API", "WebRTC", "MongoDB", "Express.js"],
   imageUrl: "https://placehold.co/1200x800.png",
-  imageHint: "AI analytics dashboard",
-  githubUrl: "https://github.com/mitadru17/hiq-project",
-  liveUrl: "https://hiq-demo.vercel.app",
+  imageHint: "AI therapy chat interface",
+  githubUrl: "https://github.com/mitadru17/ai-therapist",
+  liveUrl: "https://ai-therapist-demo.vercel.app",
   featured: true,
 };
 
 const otherProjects = [
   {
-    id: "aquasist",
-    title: "AQUASIST — Community Water Watch Platform",
-    role: "Frontend & Chatbot Developer",
-    description: "A platform enabling users to report water-related issues via a chatbot, fostering community-driven monitoring.",
-    tech: ["React", "Node.js", "Firebase", "Dialogflow"],
+    id: "greengrow-tech",
+    title: "GreenGrow Tech — Making Agriculture Smart (Finally)",
+    role: "Full-Stack Developer & Plant Whisperer",
+    description: "IoT-based crop monitoring system that knows more about your plants than you do. Features real-time monitoring, predictive analytics, and the ability to make farmers feel slightly less stressed about their crops.",
+    tech: ["React.js", "Node.js", "IoT Sensors", "MongoDB", "Chart.js", "Express.js"],
     imageUrl: "https://placehold.co/1200x800.png",
-    imageHint: "community water",
-    githubUrl: "https://github.com/mitadru17/aquasist",
-    liveUrl: "https://aquasist-demo.vercel.app",
+    imageHint: "smart farming dashboard",
+    githubUrl: "https://github.com/mitadru17/greengrow-tech",
+    liveUrl: "https://greengrow-tech-demo.vercel.app",
     featured: false,
   },
   {
-    id: "matdash",
-    title: "MatDash Dashboard Clone",
-    role: "Frontend Developer",
-    description: "A UI/UX assignment to clone a professional dashboard, demonstrating skills in building complex, responsive user interfaces.",
-    tech: ["React", "Redux", "TailwindCSS"],
+    id: "upfeet",
+    title: "UpFeet — E-commerce That Actually Works",
+    role: "Full-Stack Developer & Digital Shopkeeper",
+    description: "Complete e-commerce platform with all the bells and whistles. Admin panels, user dashboards, and payment integration that doesn't make customers want to abandon their carts.",
+    tech: ["React.js", "Node.js", "MongoDB", "Stripe API", "JWT", "Express.js"],
     imageUrl: "https://placehold.co/1200x800.png",
-    imageHint: "dashboard UI",
-    githubUrl: "https://github.com/mitadru17/matdash-clone",
-    liveUrl: "https://matdash-clone.vercel.app",
+    imageHint: "e-commerce platform",
+    githubUrl: "https://github.com/mitadru17/upfeet",
+    liveUrl: "https://upfeet-demo.vercel.app",
     featured: false,
   },
   {
-    id: "freelance",
-    title: "Freelance React Development (Internship)",
-    role: "Frontend Intern",
-    description: "Gained practical experience building production-ready UIs and dashboards for web applications using React.",
-    tech: ["React", "JavaScript", "CSS"],
+    id: "portfolio-evolution",
+    title: "Portfolio Website — Meta, Right?",
+    role: "Full-Stack Developer & Self-Promoter",
+    description: "The website you're currently browsing. A showcase of sarcasm, clean code, and the ability to talk about myself in third person. Features animations that don't make your eyes hurt.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP"],
     imageUrl: "https://placehold.co/1200x800.png",
-    imageHint: "react code",
-    githubUrl: "https://github.com/mitadru17/freelance-projects",
+    imageHint: "portfolio website",
+    githubUrl: "https://github.com/mitadru17/portfolio",
+    liveUrl: "https://mitadru-portfolio.vercel.app",
     featured: false,
   },
   {
-    id: "automation",
-    title: "Side Hustles — Automation Experiments",
-    role: "Automation Enthusiast",
-    description: "Exploring passive income through web automation, including building bots for Reddit and affiliate marketing.",
-    tech: ["Python", "Selenium", "APIs"],
+    id: "freelance-adventures",
+    title: "Various Client Projects — Solving Problems for Money",
+    role: "Freelance Developer & Problem Solver",
+    description: "Collection of client projects ranging from landing pages to complex web applications. Taught me that scope creep is real and deadlines are more like... suggestions.",
+    tech: ["React.js", "Node.js", "WordPress", "PHP", "MySQL", "JavaScript"],
     imageUrl: "https://placehold.co/1200x800.png",
-    imageHint: "automation chart",
-    githubUrl: "https://github.com/mitadru17/automation-projects",
+    imageHint: "client projects showcase",
+    githubUrl: "https://github.com/mitadru17/client-projects",
     featured: false,
   },
 ];
@@ -74,7 +75,7 @@ export default function WorkSection() {
       <div className="container mx-auto max-w-7xl px-4">
         <AnimatedHeading 
           text="MY WORK" 
-          className="mb-16 text-center text-4xl font-bold tracking-wider sm:text-5xl text-foreground" 
+          className="mb-16 text-center text-4xl font-bold tracking-wider sm:text-5xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent" 
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -82,12 +83,12 @@ export default function WorkSection() {
           <div className="space-y-8">
             <div>
               <h3 className="text-3xl font-bold mb-4 text-foreground">
-                Featured Projects
+                Projects That Actually Work
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Explore my collection of innovative projects ranging from AI-powered applications 
-                to full-stack web solutions. Each project showcases different aspects of my 
-                technical expertise and problem-solving approach.
+                Here's a collection of digital solutions I've built that solve real problems (and sometimes create new ones). 
+                From AI therapists to smart farming systems, each project taught me something new about code, life, 
+                and why coffee is essential for debugging at 3 AM.
               </p>
             </div>
 
@@ -95,19 +96,19 @@ export default function WorkSection() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span className="text-muted-foreground">🤖 AI & Machine Learning Integration</span>
+                <span className="text-muted-foreground">🤖 AI Integration (Teaching machines to think)</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span className="text-muted-foreground">🚀 Full-Stack Development</span>
+                <span className="text-muted-foreground">🚀 Full-Stack Magic (Frontend to Backend wizardry)</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
-                <span className="text-muted-foreground">🎨 Modern UI/UX Design</span>
+                <span className="text-muted-foreground">🎨 UI/UX Design (Making pixels look pretty)</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-muted-foreground">⚡ Performance Optimization</span>
+                <span className="text-muted-foreground">⚡ Performance Optimization (Making things fast, finally)</span>
               </div>
             </div>
 

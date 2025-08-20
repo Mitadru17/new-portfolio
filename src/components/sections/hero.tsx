@@ -123,10 +123,11 @@ export default function HeroSection() {
               <h2 className="font-headline text-xl font-semibold text-primary sm:text-2xl md:text-3xl">
                 <TypingEffect 
                   texts={[
-                    "Creative Developer & Designer",
-                    "UI/UX Enthusiast",
-                    "Full-Stack Creator",
-                    "Digital Innovator"
+                    "Computer Science Engineer (Surviving since 2025)",
+                    "Full-Stack Developer (Frontend & Backend Juggler)",
+                    "AI & ML Enthusiast (Teaching machines to be smarter than me)",
+                    "React Developer (Making components cry since day one)",
+                    "Problem Solver (Creator of new problems)"
                   ]}
                   speed={80}
                 />
@@ -141,7 +142,8 @@ export default function HeroSection() {
               }`}
             >
               <p className="font-headline text-lg text-muted-foreground drop-shadow-md sm:text-xl md:text-2xl">
-                Designing through a different lens. Creating digital experiences that inspire and engage.
+                From Bengaluru with code. Building digital solutions that actually work (most of the time). 
+                Specializing in making computers do exactly what I want, when I want it.
               </p>
             </div>
 
@@ -202,10 +204,10 @@ export default function HeroSection() {
                 avatarUrl="/images/mitadru-photo.jpg"
                 miniAvatarUrl="/images/mitadru-photo.jpg"
                 name="Mitadru Roy"
-                title="Creative Developer"
+                title="Computer Science Engineer"
                 handle="Mitadru17"
-                status="Online"
-                contactText="Get in touch"
+                status="Coding (Probably)"
+                contactText="Let's build something cool"
                 showUserInfo={true}
                 onContactClick={scrollToContact}
               />

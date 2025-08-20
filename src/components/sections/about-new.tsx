@@ -149,10 +149,10 @@ export default function AboutSection() {
 
       <div className="mx-auto max-w-4xl text-center mb-16">
         <p className="mb-8 text-lg text-muted-foreground leading-relaxed">
-          I'm a <span className="text-blue-400 font-semibold">versatile full-stack developer</span> and{' '}
-          <span className="text-purple-400 font-semibold">AI enthusiast</span> who thrives on building innovative solutions. 
-          From crafting beautiful user interfaces to developing intelligent backends, 
-          I bring <span className="text-pink-400 font-semibold">creativity and technical excellence</span> to every project.
+          I'm a <span className="text-blue-400 font-semibold">aspiring full-stack web developer</span> from{' '}
+          <span className="text-purple-400 font-semibold">Bengaluru, Karnataka</span> who specializes in building dynamic web applications 
+          with <span className="text-pink-400 font-semibold">React, Node.js, and REST APIs</span>. Currently surviving engineering 
+          while trying to convince computers to do what I want them to do (success rate: approximately 60%).
         </p>
         
         {/* View Toggle */}

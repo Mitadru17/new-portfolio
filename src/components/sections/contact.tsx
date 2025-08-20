@@ -99,7 +99,7 @@ export default function ContactSection() {
                   <FormItem>
                     <FormLabel>Your Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="John Doe" {...field} className="bg-background/50" />
+                      <Input placeholder="Your awesome name here" {...field} className="bg-background/50" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -112,7 +112,7 @@ export default function ContactSection() {
                   <FormItem>
                     <FormLabel>Your Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="john.doe@example.com" {...field} className="bg-background/50"/>
+                      <Input placeholder="your.email@domain.com" {...field} className="bg-background/50"/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -125,7 +125,7 @@ export default function ContactSection() {
                   <FormItem>
                     <FormLabel>Your Message</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Let's create something amazing together..." {...field} className="min-h-[120px] bg-background/50" />
+                      <Textarea placeholder="Tell me about your amazing project idea, or just say hi! I promise to respond faster than most support tickets..." {...field} className="min-h-[120px] bg-background/50" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -134,11 +134,11 @@ export default function ContactSection() {
               <Button type="submit" disabled={isSubmitting} className="w-full">
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="animate-spin" /> Sending...
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending Magic...
                   </>
                 ) : (
                   <>
-                    <Send /> Send Message
+                    <Send className="mr-2 h-4 w-4" /> Send Message
                   </>
                 )}
               </Button>

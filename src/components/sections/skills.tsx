@@ -2,148 +2,336 @@
 
 import { Badge } from "@/components/ui/badge";
 import AnimatedHeading from "@/components/animated-heading";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Card, CardContent } from "@/components/ui/card";
+import LogoLoop from "@/components/LogoLoop";
+import MagicBento from "@/components/MagicBento";
+import type { BentoCardProps } from "@/components/MagicBento";
 import { 
   Code2, Database, Globe, Zap, Brain, BarChart3, GitBranch, Settings,
-  Rocket, Lightbulb, Gamepad2, Terminal, Cloud, Shield
+  Rocket, Lightbulb, Terminal, Shield
 } from "lucide-react";
 import { 
   SiJavascript, SiTypescript, SiPython, SiReact, SiNextdotjs, 
   SiNodedotjs, SiTailwindcss, SiMongodb, SiFirebase, SiGit,
-  SiDocker, SiRedux, SiExpress, SiOpenjdk, SiHtml5, SiCss3,
-  SiTensorflow, SiPandas, SiNumpy, SiScikitlearn, SiJupyter,
-  SiLinux, SiJira, SiPostman, SiFigma, SiJenkins, SiMysql, SiPostgresql
+  SiDocker, SiExpress, SiPostgresql, SiTensorflow
 } from 'react-icons/si';
-import { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 
-const skillsData = {
-  "Programming Languages": [
-    { name: "JavaScript (ES6+)", level: 95, icon: <SiJavascript />, color: "#F7DF1E", description: "Advanced ES6+ features, async/await, modules, DOM manipulation" },
-    { name: "TypeScript", level: 92, icon: <SiTypescript />, color: "#3178C6", description: "Type-safe development, interfaces, generics, advanced types" },
-    { name: "Python", level: 90, icon: <SiPython />, color: "#3776AB", description: "ML libraries, automation, web development, data analysis" },
-    { name: "Java", level: 85, icon: <SiOpenjdk />, color: "#ED8B00", description: "OOP concepts, Spring basics, enterprise applications" },
-    { name: "HTML5 & CSS3", level: 95, icon: <div className="flex gap-1"><SiHtml5 /><SiCss3 /></div>, color: "#E34F26", description: "Semantic markup, modern CSS, animations, responsive design" },
-    { name: "SQL", level: 88, icon: <SiMysql />, color: "#336791", description: "Complex queries, database design, optimization, joins" },
-  ],
+// Transform skills data for MagicBento - organized by categories
+const skillsCategories = {
   "Frontend Development": [
-    { name: "React.js", level: 96, icon: <SiReact />, color: "#61DAFB", description: "Hooks, Context API, performance optimization, custom components" },
-    { name: "Next.js", level: 94, icon: <SiNextdotjs />, color: "#000000", description: "SSR, SSG, App Router, API routes, deployment" },
-    { name: "Redux/Zustand", level: 87, icon: <SiRedux />, color: "#764ABC", description: "State management, middleware, Redux Toolkit" },
-    { name: "TailwindCSS", level: 93, icon: <SiTailwindcss />, color: "#06B6D4", description: "Utility-first styling, custom components, responsive design" },
-    { name: "Responsive Design", level: 90, icon: <Globe />, color: "#4285F4", description: "Mobile-first approach, cross-browser compatibility" },
-    { name: "UI/UX Principles", level: 85, icon: <SiFigma />, color: "#FF6B6B", description: "User-centered design, accessibility, modern interfaces" },
+    {
+      title: "React.js",
+      description: "Because vanilla JS is for peasants who enjoy suffering",
+      icon: <SiReact className="w-6 h-6" />,
+      color: "97, 218, 251",
+      techColor: "#61DAFB",
+      level: 96
+    },
+    {
+      title: "JavaScript (ES6+)",
+      description: "Making browsers cry since 1995, now with more promises",
+      icon: <SiJavascript className="w-6 h-6" />,
+      color: "247, 223, 30",
+      techColor: "#F7DF1E",
+      level: 95
+    },
+    {
+      title: "TypeScript",
+      description: "JavaScript for people who actually want to sleep at night",
+      icon: <SiTypescript className="w-6 h-6" />,
+      color: "49, 120, 198",
+      techColor: "#3178C6",
+      level: 92
+    },
+    {
+      title: "HTML5 & CSS3",
+      description: "Still the building blocks, despite what React fanboys say",
+      icon: <Code2 className="w-6 h-6" />,
+      color: "227, 79, 38",
+      techColor: "#E34F26",
+      level: 95
+    },
+    {
+      title: "TailwindCSS",
+      description: "Because writing actual CSS is apparently too mainstream",
+      icon: <SiTailwindcss className="w-6 h-6" />,
+      color: "6, 182, 212",
+      techColor: "#06B6D4",
+      level: 93
+    }
   ],
-  "Backend Development": [
-    { name: "Node.js", level: 91, icon: <SiNodedotjs />, color: "#339933", description: "Server-side JavaScript, event-driven programming" },
-    { name: "Express.js", level: 89, icon: <SiExpress />, color: "#000000", description: "RESTful APIs, middleware, authentication, routing" },
-    { name: "REST APIs", level: 92, icon: <Terminal />, color: "#FF9500", description: "API design, documentation, testing, best practices" },
-    { name: "MongoDB", level: 86, icon: <SiMongodb />, color: "#47A248", description: "NoSQL database, aggregation, indexing, Mongoose ODM" },
-    { name: "Firebase", level: 88, icon: <SiFirebase />, color: "#FFCA28", description: "Authentication, Firestore, hosting, cloud functions" },
-    { name: "PostgreSQL", level: 82, icon: <SiPostgresql />, color: "#336791", description: "Relational database, complex queries, performance tuning" },
+  "Backend & Full Stack": [
+    {
+      title: "Node.js",
+      description: "JavaScript on the server? What could possibly go wrong?",
+      icon: <SiNodedotjs className="w-6 h-6" />,
+      color: "51, 153, 51",
+      techColor: "#339933",
+      level: 91
+    },
+    {
+      title: "Express.js",
+      description: "Fast, unopinionated, minimalist - unlike my code reviews",
+      icon: <SiExpress className="w-6 h-6" />,
+      color: "68, 68, 68",
+      techColor: "#444444",
+      level: 89
+    },
+    {
+      title: "Python",
+      description: "The language that makes everything look easy (spoiler: it's not)",
+      icon: <SiPython className="w-6 h-6" />,
+      color: "55, 118, 171",
+      techColor: "#3776AB",
+      level: 88
+    },
+    {
+      title: "Java",
+      description: "Write once, debug everywhere - thanks Oracle!",
+      icon: <Terminal className="w-6 h-6" />,
+      color: "237, 139, 0",
+      techColor: "#ED8B00",
+      level: 85
+    },
+    {
+      title: "C/C++",
+      description: "For when you want to manually manage every byte like a masochist",
+      icon: <Code2 className="w-6 h-6" />,
+      color: "100, 149, 237",
+      techColor: "#6495ED",
+      level: 80
+    }
   ],
-  "AI & Data Science": [
-    { name: "Machine Learning", level: 82, icon: <SiTensorflow />, color: "#FF6B35", description: "Supervised/unsupervised learning, model training, evaluation" },
-    { name: "Natural Language Processing", level: 85, icon: <Brain />, color: "#4ECDC4", description: "Text processing, sentiment analysis, language models" },
-    { name: "Data Analysis", level: 80, icon: <SiPandas />, color: "#150458", description: "Pandas, NumPy, data visualization, statistical analysis" },
-    { name: "TensorFlow Basics", level: 75, icon: <SiTensorflow />, color: "#FF6F00", description: "Neural networks, basic model implementation" },
-    { name: "Hugging Face", level: 85, icon: <Zap />, color: "#FFD21E", description: "Pre-trained models, transformers, model integration" },
-    { name: "OpenAI API", level: 88, icon: <Brain />, color: "#412991", description: "GPT integration, prompt engineering, AI applications" },
+  "Databases & APIs": [
+    {
+      title: "MongoDB",
+      description: "NoSQL because who needs ACID compliance anyway?",
+      icon: <SiMongodb className="w-6 h-6" />,
+      color: "71, 162, 72",
+      techColor: "#47A248",
+      level: 86
+    },
+    {
+      title: "REST APIs",
+      description: "Making HTTP requests feel fancy since 2000",
+      icon: <Globe className="w-6 h-6" />,
+      color: "255, 149, 0",
+      techColor: "#FF9500",
+      level: 92
+    },
+    {
+      title: "Firebase",
+      description: "Google's way of making us forget how to build real backends",
+      icon: <SiFirebase className="w-6 h-6" />,
+      color: "255, 202, 40",
+      techColor: "#FFCA28",
+      level: 88
+    },
+    {
+      title: "SQL",
+      description: "Because sometimes you need your data to actually make sense",
+      icon: <Database className="w-6 h-6" />,
+      color: "51, 103, 145",
+      techColor: "#336791",
+      level: 85
+    }
   ],
-  "Tools & DevOps": [
-    { name: "Git / GitHub", level: 95, icon: <SiGit />, color: "#F05032", description: "Version control, branching strategies, collaboration" },
-    { name: "Docker", level: 75, icon: <SiDocker />, color: "#2496ED", description: "Containerization basics, Dockerfile, container management" },
-    { name: "VS Code", level: 95, icon: <Code2 />, color: "#007ACC", description: "Extensions, debugging, productivity optimization" },
-    { name: "Postman", level: 90, icon: <SiPostman />, color: "#FF6C37", description: "API testing, documentation, automation" },
-    { name: "Figma", level: 80, icon: <SiFigma />, color: "#F24E1E", description: "Design collaboration, prototyping, design systems" },
-    { name: "Linux/Terminal", level: 85, icon: <SiLinux />, color: "#FCC624", description: "Command line proficiency, shell scripting, system administration" },
+  "Data & AI": [
+    {
+      title: "Machine Learning",
+      description: "Teaching computers to be almost as confused as humans",
+      icon: <Brain className="w-6 h-6" />,
+      color: "255, 107, 53",
+      techColor: "#FF6B35",
+      level: 82
+    },
+    {
+      title: "Data Structures & Algorithms",
+      description: "The art of overcomplicating simple problems since forever",
+      icon: <BarChart3 className="w-6 h-6" />,
+      color: "156, 39, 176",
+      techColor: "#9C27B0",
+      level: 85
+    },
+    {
+      title: "Data Analysis",
+      description: "Finding patterns in chaos, or at least pretending to",
+      icon: <Database className="w-6 h-6" />,
+      color: "21, 64, 88",
+      techColor: "#150458",
+      level: 80
+    }
   ],
-  "Soft Skills & Methodologies": [
-    { name: "Agile/Scrum", level: 83, icon: <Rocket />, color: "#00C853", description: "Sprint planning, stand-ups, retrospectives" },
-    { name: "Problem Solving", level: 95, icon: <Lightbulb />, color: "#FFC107", description: "Analytical thinking, debugging, algorithm design" },
-    { name: "Project Management", level: 88, icon: <Settings />, color: "#9C27B0", description: "Task prioritization, timeline management, client communication" },
-    { name: "Team Collaboration", level: 92, icon: <GitBranch />, color: "#2196F3", description: "Code reviews, knowledge sharing, mentoring" },
-    { name: "Client Communication", level: 90, icon: <Globe />, color: "#4CAF50", description: "Requirements gathering, progress updates, feedback incorporation" },
-    { name: "Continuous Learning", level: 98, icon: <BarChart3 />, color: "#FF5722", description: "Staying updated with tech trends, self-directed learning" },
+  "Security & DevOps": [
+    {
+      title: "Git/GitHub",
+      description: "Version control for people who can't remember what they did yesterday",
+      icon: <SiGit className="w-6 h-6" />,
+      color: "240, 80, 50",
+      techColor: "#F05032",
+      level: 95
+    },
+    {
+      title: "Data Security",
+      description: "Keeping hackers out while letting bugs in",
+      icon: <Shield className="w-6 h-6" />,
+      color: "76, 175, 80",
+      techColor: "#4CAF50",
+      level: 83
+    },
+    {
+      title: "Identity & Access Management",
+      description: "Making sure only the right people can break things",
+      icon: <Settings className="w-6 h-6" />,
+      color: "33, 150, 243",
+      techColor: "#2196F3",
+      level: 78
+    }
+  ],
+  "Testing & Leadership": [
+    {
+      title: "Unit Testing",
+      description: "Writing tests that pass until they don't",
+      icon: <Zap className="w-6 h-6" />,
+      color: "255, 193, 7",
+      techColor: "#FFC107",
+      level: 85
+    },
+    {
+      title: "Problem Solving",
+      description: "Professional bug creator and occasional bug destroyer",
+      icon: <Lightbulb className="w-6 h-6" />,
+      color: "255, 193, 7",
+      techColor: "#FFC107",
+      level: 95
+    },
+    {
+      title: "Agile Project Management",
+      description: "Sprinting in circles while calling it methodology",
+      icon: <Rocket className="w-6 h-6" />,
+      color: "0, 200, 83",
+      techColor: "#00C853",
+      level: 88
+    },
+    {
+      title: "Team Communication",
+      description: "Explaining why your code broke in production at 3 AM",
+      icon: <GitBranch className="w-6 h-6" />,
+      color: "33, 150, 243",
+      techColor: "#2196F3",
+      level: 92
+    }
   ]
 };
 
-// Tech logos for display
-const featuredTech = [
-  { icon: <SiJavascript className="w-8 h-8" />, name: "JavaScript", level: 95 },
-  { icon: <SiTypescript className="w-8 h-8" />, name: "TypeScript", level: 92 },
-  { icon: <SiReact className="w-8 h-8" />, name: "React", level: 96 },
-  { icon: <SiNextdotjs className="w-8 h-8" />, name: "Next.js", level: 94 },
-  { icon: <SiNodedotjs className="w-8 h-8" />, name: "Node.js", level: 91 },
-  { icon: <SiPython className="w-8 h-8" />, name: "Python", level: 90 },
-  { icon: <SiMongodb className="w-8 h-8" />, name: "MongoDB", level: 86 },
-  { icon: <SiTailwindcss className="w-8 h-8" />, name: "Tailwind", level: 93 },
+// Category metadata with icons and sarcastic descriptions
+const categoryMetadata = {
+  "Frontend Development": {
+    icon: <Code2 className="w-4 h-4" />,
+    description: "Making things look pretty while slowly losing sanity"
+  },
+  "Backend & Full Stack": {
+    icon: <Terminal className="w-4 h-4" />,
+    description: "Where the real magic happens (and breaks at 3 AM)"
+  },
+  "Databases & APIs": {
+    icon: <Database className="w-4 h-4" />,
+    description: "Storing data responsibly (sometimes)"
+  },
+  "Data & AI": {
+    icon: <Brain className="w-4 h-4" />,
+    description: "Teaching computers to think, with mixed results"
+  },
+  "Security & DevOps": {
+    icon: <Shield className="w-4 h-4" />,
+    description: "Keeping the bad guys out and good guys frustrated"
+  },
+  "Testing & Leadership": {
+    icon: <Rocket className="w-4 h-4" />,
+    description: "Breaking things professionally and managing the chaos"
+  }
+};
+
+// Core technologies for LogoLoop with original brand colors
+const coreTechnologies = [
+  { 
+    node: <SiJavascript style={{ color: "#F7DF1E" }} />, 
+    title: "JavaScript", 
+    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    ariaLabel: "JavaScript programming language"
+  },
+  { 
+    node: <SiTypescript style={{ color: "#3178C6" }} />, 
+    title: "TypeScript", 
+    href: "https://www.typescriptlang.org",
+    ariaLabel: "TypeScript programming language"
+  },
+  { 
+    node: <SiReact style={{ color: "#61DAFB" }} />, 
+    title: "React", 
+    href: "https://react.dev",
+    ariaLabel: "React JavaScript library"
+  },
+  { 
+    node: <SiNextdotjs style={{ color: "#000000" }} />, 
+    title: "Next.js", 
+    href: "https://nextjs.org",
+    ariaLabel: "Next.js React framework"
+  },
+  { 
+    node: <SiNodedotjs style={{ color: "#339933" }} />, 
+    title: "Node.js", 
+    href: "https://nodejs.org",
+    ariaLabel: "Node.js runtime environment"
+  },
+  { 
+    node: <SiPython style={{ color: "#3776AB" }} />, 
+    title: "Python", 
+    href: "https://python.org",
+    ariaLabel: "Python programming language"
+  },
+  { 
+    node: <SiTailwindcss style={{ color: "#06B6D4" }} />, 
+    title: "Tailwind CSS", 
+    href: "https://tailwindcss.com",
+    ariaLabel: "Tailwind CSS framework"
+  },
+  { 
+    node: <SiMongodb style={{ color: "#47A248" }} />, 
+    title: "MongoDB", 
+    href: "https://www.mongodb.com",
+    ariaLabel: "MongoDB database"
+  },
+  { 
+    node: <SiFirebase style={{ color: "#FFCA28" }} />, 
+    title: "Firebase", 
+    href: "https://firebase.google.com",
+    ariaLabel: "Firebase platform"
+  },
+  { 
+    node: <SiGit style={{ color: "#F05032" }} />, 
+    title: "Git", 
+    href: "https://git-scm.com",
+    ariaLabel: "Git version control"
+  },
+  { 
+    node: <SiDocker style={{ color: "#2496ED" }} />, 
+    title: "Docker", 
+    href: "https://docker.com",
+    ariaLabel: "Docker containerization"
+  },
+  { 
+    node: <SiTensorflow style={{ color: "#FF6F00" }} />, 
+    title: "TensorFlow", 
+    href: "https://tensorflow.org",
+    ariaLabel: "TensorFlow machine learning"
+  }
 ];
 
-function SkillBar({ name, level, icon, color, description }: { 
-  name: string, level: number, icon: React.ReactNode, color: string, description: string 
-}) {
-  const [progress, setProgress] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setProgress(level), Math.random() * 500);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [level]);
-
-  return (
-    <div 
-      ref={ref}
-      className="group relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="flex items-center mb-3">
-        <span className="text-xl mr-3 transition-transform group-hover:scale-110">
-          {icon}
-        </span>
-        <div className="flex-1">
-          <div className="flex justify-between items-center mb-1">
-            <p className="text-sm font-semibold text-foreground">{name}</p>
-            <p className="text-sm font-mono text-muted-foreground">{level}%</p>
-          </div>
-          <Progress 
-            value={progress} 
-            className="h-2"
-            style={{
-              // @ts-ignore
-              '--progress-background': color,
-            }}
-          />
-          {isHovered && (
-            <p className="text-xs text-muted-foreground mt-2 transition-opacity duration-200">
-              {description}
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function SkillsSection() {
+  const [activeCategory, setActiveCategory] = useState<string>(Object.keys(skillsCategories)[0]);
+
   return (
     <section id="skills" className="py-16 bg-secondary/30">
       <div className="container mx-auto max-w-6xl px-4">
@@ -153,67 +341,89 @@ export default function SkillsSection() {
             className="text-3xl sm:text-4xl font-bold mb-6 text-foreground"
           />
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            A comprehensive overview of my technical expertise, tools I work with, and the skills I've developed through hands-on experience and continuous learning.
+            A carefully curated collection of technologies I've wrestled with, survived, and occasionally emerged victorious from. 
+            Warning: Side effects may include imposter syndrome and an unhealthy relationship with Stack Overflow.
           </p>
         </div>
 
-        {/* Featured Technologies */}
+        {/* Core Technologies Logo Loop */}
+        <div className="mb-16 -mx-4 sm:-mx-6 lg:-mx-8">
+          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground mx-4 sm:mx-6 lg:mx-8">Core Technologies</h3>
+          <div className="relative h-20 w-full overflow-hidden">
+            <LogoLoop
+              logos={coreTechnologies}
+              speed={80}
+              direction="left"
+              logoHeight={48}
+              gap={48}
+              pauseOnHover={true}
+              scaleOnHover={true}
+              fadeOut={false}
+              ariaLabel="Core technologies I work with"
+              className="h-full w-full"
+            />
+          </div>
+          <p className="text-center text-sm text-muted-foreground mt-4 mx-4 sm:mx-6 lg:mx-8">
+            Hover to pause • Click to learn more
+          </p>
+        </div>
+
+        {/* Categorized Skills Showcase */}
         <div className="mb-12">
-          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">Core Technologies</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            {featuredTech.map((tech, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-background to-primary/5">
-                <CardContent className="p-4 text-center">
-                  <div className="flex justify-center mb-2 text-primary group-hover:scale-110 transition-transform">
-                    {tech.icon}
-                  </div>
-                  <p className="text-sm font-medium text-foreground">{tech.name}</p>
-                  <p className="text-xs text-muted-foreground">{tech.level}%</p>
-                </CardContent>
-              </Card>
+          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">
+            Technical Skills & Expertise
+          </h3>
+          
+          {/* Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 max-w-5xl mx-auto">
+            {Object.keys(skillsCategories).map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  activeCategory === category
+                    ? 'bg-primary text-primary-foreground shadow-lg transform scale-105'
+                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground hover:scale-102'
+                }`}
+              >
+                {categoryMetadata[category as keyof typeof categoryMetadata]?.icon}
+                <span>{category}</span>
+              </button>
             ))}
+          </div>
+
+          {/* Active Category Skills */}
+          <div className="transition-all duration-500 ease-in-out">
+            <div className="text-center mb-6">
+              <h4 className="text-xl font-semibold text-primary mb-2 flex items-center justify-center gap-2">
+                {categoryMetadata[activeCategory as keyof typeof categoryMetadata]?.icon}
+                {activeCategory}
+              </h4>
+              <p className="text-sm text-muted-foreground mb-2">
+                {categoryMetadata[activeCategory as keyof typeof categoryMetadata]?.description}
+              </p>
+              <p className="text-xs text-muted-foreground/70">
+                {skillsCategories[activeCategory as keyof typeof skillsCategories].length} skills in this category
+              </p>
+            </div>
+            <MagicBento skillsData={skillsCategories[activeCategory as keyof typeof skillsCategories]} />
           </div>
         </div>
 
-        {/* Detailed Skills */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skillsData).map(([category, items]) => (
-            <Card key={category} className="hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-background/50 to-primary/5 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-lg font-semibold text-center text-primary">
-                  {category}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {items.map((skill) => (
-                  <SkillBar 
-                    key={skill.name} 
-                    name={skill.name} 
-                    level={skill.level}
-                    icon={skill.icon}
-                    color={skill.color}
-                    description={skill.description}
-                  />
-                ))}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
         {/* Learning Philosophy */}
-        <Card className="mt-12 bg-gradient-to-br from-primary/5 to-accent/5">
+        <Card className="mt-12 bg-gradient-to-br from-primary/5 to-accent/5 border-border/50">
           <CardContent className="p-8 text-center">
             <h3 className="text-2xl font-semibold mb-4 text-foreground">My Learning Philosophy</h3>
             <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
-              I believe in continuous learning and hands-on experience. Every project teaches me something new, 
-              and I'm always exploring emerging technologies to stay ahead of the curve. My approach combines 
-              theoretical knowledge with practical implementation to build robust, scalable solutions.
+              I believe in continuous learning because technology changes faster than my ability to keep up. 
+              Every project is a new opportunity to discover creative ways to break things, and I'm always 
+              exploring emerging technologies that promise to solve all our problems (narrator: they don't).
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Badge variant="secondary" className="px-4 py-2">🚀 Always Learning</Badge>
-              <Badge variant="secondary" className="px-4 py-2">🔬 Experimental Mindset</Badge>
-              <Badge variant="secondary" className="px-4 py-2">🎯 Problem-First Approach</Badge>
-              <Badge variant="secondary" className="px-4 py-2">🤝 Collaborative Growth</Badge>
+              <Badge variant="secondary" className="px-4 py-2">� Trial by Fire</Badge>
+              <Badge variant="secondary" className="px-4 py-2">� Professional Bug Creator</Badge>
+              <Badge variant="secondary" className="px-4 py-2">☕ Caffeine-Driven Development</Badge>
+              <Badge variant="secondary" className="px-4 py-2">🚀 Fake It Till You Make It</Badge>
             </div>
           </CardContent>
         </Card>
