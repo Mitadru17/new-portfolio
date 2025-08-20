@@ -74,7 +74,7 @@ export default function WorkSection() {
       <div className="container mx-auto max-w-7xl px-4">
         <AnimatedHeading 
           text="MY WORK" 
-          className="mb-16 text-center text-4xl font-bold tracking-wider sm:text-5xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent" 
+          className="mb-16 text-center text-4xl font-bold tracking-wider sm:text-5xl text-foreground" 
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
