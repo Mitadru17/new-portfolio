@@ -71,7 +71,7 @@ const otherProjects = [
 
 export default function WorkSection() {
   return (
-    <section id="work" className="bg-secondary/30 dark:bg-secondary/20 py-20 min-h-screen">
+    <section id="work" className="py-20 min-h-screen">
       <div className="container mx-auto max-w-7xl px-4">
         <AnimatedHeading 
           text="MY WORK" 

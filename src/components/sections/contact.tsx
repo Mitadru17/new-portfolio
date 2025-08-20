@@ -60,7 +60,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="bg-secondary/50 dark:bg-secondary/20">
+    <section id="contact" className="py-20 min-h-screen">
       <div className="container mx-auto max-w-4xl px-4 text-center">
         <AnimatedHeading text="LET'S BUILD SOMETHING GREAT" className="mb-4 text-4xl font-bold tracking-wider sm:text-5xl" />
         <p className="mb-8 text-lg text-muted-foreground">
