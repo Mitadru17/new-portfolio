@@ -106,87 +106,89 @@ const testimonialItems = testimonials.map(testimonial => ({
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="container mx-auto max-w-7xl px-4 py-20">
-      <div className="mb-16 text-center">
+    <section id="testimonials" className="container mx-auto max-w-7xl spacing-responsive py-responsive">
+      <div className="mb-8 sm:mb-12 md:mb-16 text-center">
         <AnimatedHeading 
           text="WHAT OTHERS SAY" 
-          className="mb-12 text-center text-4xl font-bold tracking-wider sm:text-5xl text-foreground" 
+          className="mb-8 sm:mb-12 text-center text-responsive-xl font-bold tracking-wider text-foreground" 
         />
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12">
+        <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12">
           Hear from colleagues, clients, and collaborators about their experience working with me
         </p>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        {/* Left Column */}
-        <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+        {/* Left Column - Stats and Info */}
+        <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
           <div className="text-center lg:text-left">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Trusted by Professionals
             </h3>
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20 p-4 rounded-xl text-center">
-                <div className="text-2xl font-bold text-primary">15+</div>
-                <div className="text-sm text-muted-foreground">Projects</div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20 p-3 sm:p-4 rounded-xl text-center hover-lift">
+                <div className="text-xl sm:text-2xl font-bold text-primary">15+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Projects</div>
               </div>
-              <div className="bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-950/20 dark:to-pink-950/20 p-4 rounded-xl text-center">
-                <div className="text-2xl font-bold text-primary">8+</div>
-                <div className="text-sm text-muted-foreground">Clients</div>
+              <div className="bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-950/20 dark:to-pink-950/20 p-3 sm:p-4 rounded-xl text-center hover-lift">
+                <div className="text-xl sm:text-2xl font-bold text-primary">8+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Clients</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Center Column - Infinite Scroll */}
-        <div className="lg:col-span-1 h-[600px]">
-          <InfiniteScroll
-            items={testimonialItems}
-            width="100%"
-            maxHeight="600px"
-            itemMinHeight={200}
-            isTilted={true}
-            tiltDirection="left"
-            autoplay={true}
-            autoplaySpeed={0.8}
-            autoplayDirection="down"
-            pauseOnHover={true}
-            negativeMargin="-1rem"
-          />
+        {/* Center Column - Infinite Scroll Testimonials */}
+        <div className="lg:col-span-1 order-1 lg:order-2">
+          <div className="h-[400px] sm:h-[500px] md:h-[600px]">
+            <InfiniteScroll
+              items={testimonialItems}
+              width="100%"
+              maxHeight="100%"
+              itemMinHeight={150}
+              isTilted={true}
+              tiltDirection="left"
+              autoplay={true}
+              autoplaySpeed={0.8}
+              autoplayDirection="down"
+              pauseOnHover={true}
+              negativeMargin="-0.5rem"
+            />
+          </div>
         </div>
 
-        {/* Right Column */}
-        <div className="space-y-6">
+        {/* Right Column - Features */}
+        <div className="space-y-4 sm:space-y-6 order-3">
           <div className="text-center lg:text-left">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
               Why Work With Me?
             </h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="flex items-start gap-3 hover-lift p-2 sm:p-3 rounded-lg hover:bg-muted/30 transition-all">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h4 className="font-semibold text-sm">Full-Stack Expertise</h4>
-                  <p className="text-xs text-muted-foreground">React, Node.js, and modern web technologies</p>
+                  <h4 className="font-semibold text-sm sm:text-base">Full-Stack Expertise</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">React, Node.js, and modern web technologies</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 hover-lift p-2 sm:p-3 rounded-lg hover:bg-muted/30 transition-all">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h4 className="font-semibold text-sm">Problem Solver</h4>
-                  <p className="text-xs text-muted-foreground">Creative solutions for complex challenges</p>
+                  <h4 className="font-semibold text-sm sm:text-base">Problem Solver</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Creative solutions for complex challenges</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 hover-lift p-2 sm:p-3 rounded-lg hover:bg-muted/30 transition-all">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h4 className="font-semibold text-sm">Team Player</h4>
-                  <p className="text-xs text-muted-foreground">Great communication and collaboration skills</p>
+                  <h4 className="font-semibold text-sm sm:text-base">Team Player</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Great communication and collaboration skills</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 hover-lift p-2 sm:p-3 rounded-lg hover:bg-muted/30 transition-all">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                 <div>
-                  <h4 className="font-semibold text-sm">Fast Delivery</h4>
-                  <p className="text-xs text-muted-foreground">Quality code delivered on time</p>
+                  <h4 className="font-semibold text-sm sm:text-base">Fast Delivery</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Quality code delivered on time</p>
                 </div>
               </div>
             </div>

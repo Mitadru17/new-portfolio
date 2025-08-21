@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -15,21 +14,39 @@ import { useToast } from "@/hooks/use-toast";
 import { submitContactForm } from "@/ai/flows/submit-contact-form";
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  message: z.string().min(10, {
+    message: "Message must be at least 10 characters.",
+  }),
 });
 
 const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/mitadruroy" },
-  { icon: Github, label: "GitHub", href: "https://github.com/mitadruroy" },
-  { icon: FileText, label: "Resume", href: "/Mitadru_Roy_CV.pdf", download: true },
+  {
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/CoderMitadru",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn", 
+    href: "https://linkedin.com/in/mitadru-roy",
+  },
+  {
+    icon: FileText,
+    label: "Resume",
+    href: "/Mitadru_Roy_CV.pdf",
+  }
 ];
 
-export default function ContactSection() {
+export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -60,90 +77,150 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-20 min-h-screen">
-      <div className="container mx-auto max-w-4xl px-4 text-center">
-        <AnimatedHeading text="LET'S BUILD SOMETHING GREAT" className="mb-4 text-4xl font-bold tracking-wider sm:text-5xl" />
-        <p className="mb-8 text-lg text-muted-foreground">
-          Have a project in mind or just want to connect? Drop me a message!
-        </p>
+    <section id="contact" className="py-responsive bg-gradient-to-br from-background via-secondary/20 to-background">
+      <div className="container mx-auto max-w-6xl spacing-responsive">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <AnimatedHeading 
+            text="LET'S BUILD SOMETHING GREAT" 
+            className="mb-4 sm:mb-6 text-responsive-xl font-bold tracking-wider text-foreground" 
+          />
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Have a project in mind or just want to connect? Drop me a message and let's create something amazing together!
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:text-left">
-          <div className="flex flex-col gap-8">
-            <div>
-              <h3 className="font-headline text-2xl font-semibold text-primary">Get in Touch</h3>
-              <p className="mt-2 text-muted-foreground">
-                I’m always open to collaborations, freelance gigs, and hackathon teams. Reach out and let's start a conversation.
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
+          {/* Contact Information */}
+          <div className="order-2 lg:order-1 space-y-6 sm:space-y-8">
+            {/* Get in Touch Section */}
+            <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 hover-lift">
+              <h3 className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">Get in Touch</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                I'm always open to collaborations, freelance projects, and hackathon teams. 
+                Reach out and let's start a conversation about your next big idea!
               </p>
             </div>
-            <div className="flex flex-col gap-4">
-              {socialLinks.map(({ icon: Icon, label, href }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-4 transition-colors hover:text-primary">
-                  <span className="rounded-lg border border-border bg-background/50 p-3 transition-colors group-hover:border-primary/50 group-hover:bg-primary/10">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <div>
-                    <p className="font-semibold">{label}</p>
-                    <p className="text-sm text-muted-foreground">{href.replace('https://','').replace('/Mitadru_Roy_CV.pdf', 'Download CV')}</p>
-                  </div>
-                </a>
-              ))}
+
+            {/* Social Links */}
+            <div className="bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl p-6 sm:p-8 hover-lift">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground">Connect With Me</h3>
+              
+              <div className="space-y-3 sm:space-y-4">
+                {socialLinks.map(({ icon: Icon, label, href }) => (
+                  <a 
+                    key={label} 
+                    href={href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="group flex items-center gap-4 p-3 sm:p-4 bg-muted/30 rounded-lg hover:bg-muted/50 hover:shadow-lg transition-all hover-lift"
+                  >
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm sm:text-base font-medium text-foreground group-hover:text-primary transition-colors">
+                        {label}
+                      </p>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        {href.replace('https://','').replace('/Mitadru_Roy_CV.pdf', 'Download CV')}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Response Info */}
+            <div className="text-center p-4 sm:p-6 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 rounded-2xl border border-primary/20">
+              <h4 className="text-base sm:text-lg font-semibold text-foreground mb-2">
+                ⚡ Quick Response
+              </h4>
+              <p className="text-sm sm:text-base text-muted-foreground">
+                I typically respond within 24 hours. Let's build something great together!
+              </p>
             </div>
           </div>
           
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Your Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your awesome name here" {...field} className="bg-background/50" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Your Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="your.email@domain.com" {...field} className="bg-background/50"/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Your Message</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Tell me about your amazing project idea, or just say hi! I promise to respond faster than most support tickets..." {...field} className="min-h-[120px] bg-background/50" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" disabled={isSubmitting} className="w-full">
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending Magic...
-                  </>
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" /> Send Message
-                  </>
-                )}
-              </Button>
-            </form>
-          </Form>
+          {/* Contact Form */}
+          <div className="order-1 lg:order-2">
+            <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 hover-lift">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground">Send a Message</h3>
+              
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm sm:text-base">Your Name</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Your awesome name here" 
+                            {...field} 
+                            className="bg-background/50 mobile-p-4 transition-smooth" 
+                          />
+                        </FormControl>
+                        <FormMessage className="text-xs sm:text-sm" />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm sm:text-base">Your Email</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="your.email@domain.com" 
+                            {...field} 
+                            className="bg-background/50 mobile-p-4 transition-smooth"
+                          />
+                        </FormControl>
+                        <FormMessage className="text-xs sm:text-sm" />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm sm:text-base">Your Message</FormLabel>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="Tell me about your amazing project idea, or just say hi! I promise to respond faster than most support tickets..." 
+                            {...field} 
+                            className="min-h-[120px] sm:min-h-[140px] bg-background/50 mobile-p-4 resize-none transition-smooth" 
+                          />
+                        </FormControl>
+                        <FormMessage className="text-xs sm:text-sm" />
+                      </FormItem>
+                    )}
+                  />
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting} 
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary hover-lift mobile-full"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> 
+                        Sending Magic...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" /> 
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </Form>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -96,143 +96,117 @@ export default function HeroSection() {
       </div>
 
       {/* Main Content */}
-      <div className="container relative z-10 mx-auto px-4 text-center pt-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          {/* Left Side - Text Content */}
-          <div className="lg:text-left">
-            {/* Name with Split Text Animation */}
-            <div style={parallaxStyle(0.02)} className="mb-6">
-              <SplitText 
-                className="text-5xl font-bold tracking-tighter text-foreground drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl hover:scale-105 transition-all duration-300"
-                delay={0.2}
-                stagger={0.08}
-                duration={0.6}
-                trigger={isVisible}
-              >
-                Mitadru Roy
-              </SplitText>
+      <div className="container relative z-10 mx-auto spacing-responsive text-center pt-16 sm:pt-20 md:pt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl mx-auto">
+          
+          {/* Left Column - Text Content */}
+          <div className="order-2 lg:order-1 space-y-6 sm:space-y-8 animate-slide-in-left lg:text-left">
+            <div className="space-y-4 sm:space-y-6">
+              <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <SplitText 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground drop-shadow-lg mobile-center" 
+                  delay={0.2}
+                  stagger={0.08}
+                  duration={0.6}
+                  trigger={isVisible}
+                >
+                  Mitadru Roy
+                </SplitText>
+              </div>
+              
+              <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className="text-lg sm:text-xl md:text-2xl text-primary font-semibold mb-4 mobile-center lg:text-left">
+                  <TypingEffect 
+                    texts={[
+                      "Computer Science Engineer (Surviving since 2025)",
+                      "Full-Stack Developer (Frontend & Backend Juggler)",
+                      "AI & ML Enthusiast (Teaching machines to be smarter than me)",
+                      "React Developer (Making components cry since day one)",
+                      "Problem Solver (Creator of new problems)"
+                    ]}
+                    speed={80}
+                  />
+                </div>
+              </div>
+
+              <div className={`transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0 mobile-center lg:text-left">
+                  From Bengaluru with code. Building digital solutions that actually work (most of the time). 
+                  Specializing in making computers do exactly what I want, when I want it.
+                </p>
+              </div>
             </div>
 
-            {/* Professional Title */}
-            <div 
-              style={parallaxStyle(0.025)}
-              className={`mb-4 transform transition-all duration-1000 delay-500 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <h2 className="font-headline text-xl font-semibold text-primary sm:text-2xl md:text-3xl">
-                <TypingEffect 
-                  texts={[
-                    "Computer Science Engineer (Surviving since 2025)",
-                    "Full-Stack Developer (Frontend & Backend Juggler)",
-                    "AI & ML Enthusiast (Teaching machines to be smarter than me)",
-                    "React Developer (Making components cry since day one)",
-                    "Problem Solver (Creator of new problems)"
-                  ]}
-                  speed={80}
-                />
-              </h2>
-            </div>
-
-            {/* Tagline */}
-            <div 
-              style={parallaxStyle(0.03)}
-              className={`mb-8 transform transition-all duration-1000 delay-700 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <p className="font-headline text-lg text-muted-foreground drop-shadow-md sm:text-xl md:text-2xl">
-                From Bengaluru with code. Building digital solutions that actually work (most of the time). 
-                Specializing in making computers do exactly what I want, when I want it.
-              </p>
-            </div>
-
-            {/* Call to Action Buttons */}
-            <div 
-              style={parallaxStyle(0.035)}
-              className={`mb-8 lg:mb-16 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center transform transition-all duration-1000 delay-1000 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
+            {/* Action Buttons */}
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <Button 
                 onClick={scrollToWork}
                 size="lg" 
-                className="group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                className="group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white hover-lift mobile-full sm:w-auto"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  View My Work
-                  <ExternalLink className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                View My Projects
               </Button>
-              
               <Button 
-                onClick={scrollToContact}
                 variant="outline" 
                 size="lg"
-                className="group border-2 border-primary/20 hover:border-primary/40 bg-background/50 backdrop-blur-sm px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                onClick={scrollToContact}
+                className="hover-lift mobile-full sm:w-auto"
               >
-                <span className="flex items-center gap-2">
-                  Get In Touch
-                  <Mail className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                </span>
+                <Mail className="mr-2 h-4 w-4" />
+                Let's Connect
               </Button>
-              
               <Button 
-                onClick={handleDownloadCV}
-                variant="ghost" 
+                variant="outline" 
                 size="lg"
-                className="group hover:bg-secondary/50 px-8 py-6 text-lg font-semibold transition-all duration-300 hover:scale-105"
+                onClick={handleDownloadCV}
+                className="hover-lift mobile-full sm:w-auto"
               >
-                <span className="flex items-center gap-2">
-                  Download CV
-                  <Download className="w-5 h-5 transition-transform group-hover:translate-y-1" />
-                </span>
+                <Download className="mr-2 h-4 w-4" />
+                Download CV
               </Button>
+            </div>
+
+            {/* Social Proof */}
+            <div className={`pt-6 sm:pt-8 transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="flex items-center justify-center lg:justify-start gap-6 sm:gap-8 text-sm text-muted-foreground mobile-center">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>Available for work</span>
+                </div>
+                <div className="hidden sm:block w-px h-4 bg-border"></div>
+                <div>Based in Bengaluru, India</div>
+              </div>
             </div>
           </div>
 
-          {/* Right Side - Profile Card */}
-          <div className="flex justify-center lg:justify-end">
-            <div 
-              style={parallaxStyle(-0.015)} 
-              className={`relative transform transition-all duration-1500 delay-1200 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-              }`}
-            >
+          {/* Right Column - Profile Card */}
+          <div className="order-1 lg:order-2 flex justify-center animate-slide-in-right">
+            <div className={`w-full max-w-sm lg:max-w-md transition-all duration-1000 delay-300 hover-lift ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
               <ProfileCard 
                 avatarUrl="/images/mitadru-photo.jpg"
-                miniAvatarUrl="/images/mitadru-photo.jpg"
                 name="Mitadru Roy"
-                title="Computer Science Engineer"
-                handle="Mitadru17"
-                status="Coding (Probably)"
-                contactText="Let's build something cool"
-                showUserInfo={true}
-                onContactClick={scrollToContact}
+                role="Full-Stack Developer"
+                isOnline={true}
               />
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div 
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}
-      >
-        <button
-          onClick={scrollToWork}
-          className="group flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
-          aria-label="Scroll to work section"
-        >
-          <span className="text-sm font-medium tracking-wider">Explore My Work</span>
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-primary/20 scale-150 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-            <ChevronDown className="relative z-10 w-6 h-6 animate-bounce group-hover:text-primary group-hover:animate-bounce-slow transition-colors" />
-          </div>
-        </button>
+        {/* Scroll Indicator */}
+        <div className={`mt-12 sm:mt-16 md:mt-20 transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={scrollToWork}
+            className="group animate-bounce hover:animate-none transition-all"
+          >
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-xs sm:text-sm font-medium tracking-wider mobile-text-sm">Explore My Projects</span>
+              <ChevronDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            </div>
+          </Button>
+        </div>
       </div>
     </section>
   );
