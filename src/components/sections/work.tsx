@@ -1,10 +1,14 @@
+"use client";
+
 import ProjectCard from "@/components/project-card";
 import AnimatedHeading from "@/components/animated-heading";
 import CardSwap, { Card } from "@/components/CardSwap";
 import SwapProjectCard from "@/components/SwapProjectCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ExternalLink, Github, Eye, X } from "lucide-react";
+import { useState } from "react";
 
 const featuredProject = {
   id: "ai-therapist",
@@ -69,13 +73,70 @@ const otherProjects = [
   },
 ];
 
+// All projects combined for the modal
+const allProjects = [featuredProject, ...otherProjects];
+
+// Detailed project modal component
+const ProjectModal = ({ project }: { project: typeof featuredProject }) => (
+  <div className="space-y-6">
+    <div className="relative">
+      <img 
+        src={project.imageUrl} 
+        alt={project.imageHint}
+        className="w-full h-64 object-cover rounded-lg"
+      />
+      <Badge className={`absolute top-4 right-4 ${project.featured ? 'bg-yellow-500' : 'bg-blue-500'}`}>
+        {project.featured ? '⭐ Featured' : 'Project'}
+      </Badge>
+    </div>
+    
+    <div>
+      <h3 className="text-2xl font-bold mb-2 text-foreground">{project.title}</h3>
+      <p className="text-lg text-primary font-medium mb-4">{project.role}</p>
+      <p className="text-muted-foreground leading-relaxed mb-6">{project.description}</p>
+    </div>
+
+    <div>
+      <h4 className="text-lg font-semibold mb-3 text-foreground">Technologies Used</h4>
+      <div className="flex flex-wrap gap-2 mb-6">
+        {project.tech.map((tech) => (
+          <Badge key={tech} variant="secondary" className="text-sm">
+            {tech}
+          </Badge>
+        ))}
+      </div>
+    </div>
+
+    <div className="flex gap-3 pt-4">
+      {project.githubUrl && (
+        <Button asChild variant="outline" size="sm">
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="mr-2 h-4 w-4" />
+            View Code
+          </a>
+        </Button>
+      )}
+      {project.liveUrl && (
+        <Button asChild size="sm">
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="mr-2 h-4 w-4" />
+            Live Demo
+          </a>
+        </Button>
+      )}
+    </div>
+  </div>
+);
+
 export default function WorkSection() {
+  const [selectedProject, setSelectedProject] = useState<typeof featuredProject | null>(null);
+
   return (
     <section id="work" className="py-20 min-h-screen">
       <div className="container mx-auto max-w-7xl px-4">
         <AnimatedHeading 
-          text="MY WORK" 
-          className="mb-16 text-center text-4xl font-bold tracking-wider sm:text-5xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent" 
+          text="MY PROJECTS" 
+          className="mb-16 text-center text-4xl font-bold tracking-wider sm:text-5xl text-foreground" 
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -114,12 +175,90 @@ export default function WorkSection() {
 
             {/* Action Buttons */}
             <div className="flex gap-4 pt-6">
-              <Button asChild size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
-                <a href="https://github.com/mitadru17" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  View All Projects
-                </a>
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
+                    <Github className="mr-2 h-4 w-4" />
+                    View All Projects
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-foreground mb-6">
+                      All Projects Portfolio
+                    </DialogTitle>
+                  </DialogHeader>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {allProjects.map((project) => (
+                      <div 
+                        key={project.id} 
+                        className="group cursor-pointer border rounded-lg p-4 hover:shadow-lg transition-all duration-300 hover:border-primary/30"
+                        onClick={() => setSelectedProject(project)}
+                      >
+                        <div className="relative mb-4">
+                          <img 
+                            src={project.imageUrl} 
+                            alt={project.imageHint}
+                            className="w-full h-48 object-cover rounded-md"
+                          />
+                          <Badge className={`absolute top-2 right-2 ${project.featured ? 'bg-yellow-500' : 'bg-blue-500'}`}>
+                            {project.featured ? '⭐ Featured' : 'Project'}
+                          </Badge>
+                        </div>
+                        
+                        <h4 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h4>
+                        <p className="text-sm text-primary font-medium mb-2">{project.role}</p>
+                        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                          {project.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {project.tech.slice(0, 4).map((tech) => (
+                            <Badge key={tech} variant="outline" className="text-xs">
+                              {tech}
+                            </Badge>
+                          ))}
+                          {project.tech.length > 4 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{project.tech.length - 4} more
+                            </Badge>
+                          )}
+                        </div>
+                        
+                        <div className="flex gap-2">
+                          {project.githubUrl && (
+                            <Button 
+                              asChild 
+                              variant="outline" 
+                              size="sm"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                <Github className="h-3 w-3" />
+                              </a>
+                            </Button>
+                          )}
+                          {project.liveUrl && (
+                            <Button 
+                              asChild 
+                              size="sm"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="h-3 w-3" />
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+              
               <Button variant="outline" size="lg" asChild>
                 <a href="#contact">
                   <Eye className="mr-2 h-4 w-4" />
@@ -186,7 +325,91 @@ export default function WorkSection() {
               can work together on your next project.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button asChild variant="default">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="default" size="lg">
+                    <Eye className="mr-2 h-4 w-4" />
+                    View All Projects
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-foreground mb-6">
+                      All Projects Portfolio
+                    </DialogTitle>
+                  </DialogHeader>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {allProjects.map((project) => (
+                      <div 
+                        key={project.id} 
+                        className="group cursor-pointer border rounded-lg p-4 hover:shadow-lg transition-all duration-300 hover:border-primary/30"
+                        onClick={() => setSelectedProject(project)}
+                      >
+                        <div className="relative mb-4">
+                          <img 
+                            src={project.imageUrl} 
+                            alt={project.imageHint}
+                            className="w-full h-48 object-cover rounded-md"
+                          />
+                          <Badge className={`absolute top-2 right-2 ${project.featured ? 'bg-yellow-500' : 'bg-blue-500'}`}>
+                            {project.featured ? '⭐ Featured' : 'Project'}
+                          </Badge>
+                        </div>
+                        
+                        <h4 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h4>
+                        <p className="text-sm text-primary font-medium mb-2">{project.role}</p>
+                        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                          {project.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {project.tech.slice(0, 4).map((tech) => (
+                            <Badge key={tech} variant="outline" className="text-xs">
+                              {tech}
+                            </Badge>
+                          ))}
+                          {project.tech.length > 4 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{project.tech.length - 4} more
+                            </Badge>
+                          )}
+                        </div>
+                        
+                        <div className="flex gap-2">
+                          {project.githubUrl && (
+                            <Button 
+                              asChild 
+                              variant="outline" 
+                              size="sm"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                <Github className="h-3 w-3" />
+                              </a>
+                            </Button>
+                          )}
+                          {project.liveUrl && (
+                            <Button 
+                              asChild 
+                              size="sm"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="h-3 w-3" />
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+
+              <Button asChild variant="outline">
                 <a href="https://github.com/mitadru17" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub Portfolio
@@ -201,6 +424,16 @@ export default function WorkSection() {
             </div>
           </div>
         </div>
+
+        {/* Individual Project Detail Modal */}
+        <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="sr-only">Project Details</DialogTitle>
+            </DialogHeader>
+            {selectedProject && <ProjectModal project={selectedProject} />}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

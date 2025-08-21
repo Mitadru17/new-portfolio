@@ -3,7 +3,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import AnimatedHeading from "@/components/animated-heading";
-import LogoLoop from "@/components/LogoLoop";
 import { useState } from "react";
 import { 
   Code, Database, Globe, Smartphone, Palette, Wrench,
@@ -20,80 +19,6 @@ import {
 } from "react-icons/si";
 import { FaTools, FaDatabase, FaBrain, FaChartBar, FaVideo, FaMobile, FaGlobe, FaCode } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
-
-// Core skills for LogoLoop with original brand colors
-const coreSkillsLogos = [
-  { 
-    node: <SiReact style={{ color: '#61DAFB' }} />, 
-    title: "React.js", 
-    href: "https://react.dev" 
-  },
-  { 
-    node: <SiNextdotjs style={{ color: '#000000' }} />, 
-    title: "Next.js", 
-    href: "https://nextjs.org" 
-  },
-  { 
-    node: <SiTypescript style={{ color: '#3178C6' }} />, 
-    title: "TypeScript", 
-    href: "https://www.typescriptlang.org" 
-  },
-  { 
-    node: <SiTailwindcss style={{ color: '#06B6D4' }} />, 
-    title: "Tailwind CSS", 
-    href: "https://tailwindcss.com" 
-  },
-  { 
-    node: <SiNodedotjs style={{ color: '#68A063' }} />, 
-    title: "Node.js", 
-    href: "https://nodejs.org" 
-  },
-  { 
-    node: <SiJavascript style={{ color: '#F7DF1E' }} />, 
-    title: "JavaScript", 
-    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" 
-  },
-  { 
-    node: <SiMongodb style={{ color: '#47A248' }} />, 
-    title: "MongoDB", 
-    href: "https://www.mongodb.com" 
-  },
-  { 
-    node: <SiExpress style={{ color: '#000000' }} />, 
-    title: "Express.js", 
-    href: "https://expressjs.com" 
-  },
-  { 
-    node: <SiGit style={{ color: '#F05032' }} />, 
-    title: "Git", 
-    href: "https://git-scm.com" 
-  },
-  { 
-    node: <SiGithub style={{ color: '#181717' }} />, 
-    title: "GitHub", 
-    href: "https://github.com" 
-  },
-  { 
-    node: <VscCode style={{ color: '#007ACC' }} />, 
-    title: "VS Code", 
-    href: "https://code.visualstudio.com" 
-  },
-  { 
-    node: <SiPython style={{ color: '#3776AB' }} />, 
-    title: "Python", 
-    href: "https://www.python.org" 
-  },
-  { 
-    node: <SiDocker style={{ color: '#2496ED' }} />, 
-    title: "Docker", 
-    href: "https://www.docker.com" 
-  },
-  { 
-    node: <SiFigma style={{ color: '#F24E1E' }} />, 
-    title: "Figma", 
-    href: "https://www.figma.com" 
-  },
-];
 
 const skillsCategories = [
   {
@@ -409,22 +334,22 @@ interface SkillCardProps {
 
 const SkillCard = ({ skill }: SkillCardProps) => {
   return (
-    <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105 bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/20">
+    <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105 bg-gray-900/90 border-gray-700/50 backdrop-blur-sm">
       <CardContent className="p-6">
         <div className="flex items-start gap-4">
-          <div className={`${skill.bgColor} w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-md`}>
+          <div className={`${skill.bgColor} w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg shrink-0`}>
             {skill.logo}
           </div>
           <div className="flex-1 min-w-0">
-            <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">
+            <h4 className="font-bold text-lg text-white mb-1 group-hover:text-blue-400 transition-colors">
               {skill.name}
             </h4>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+            <p className="text-sm text-gray-400 leading-relaxed mb-3">
               {skill.description}
             </p>
             <div className="flex items-center justify-between">
-              <div className="text-xs text-muted-foreground/70">Proficiency</div>
-              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+              <div className="text-xs text-gray-500">Proficiency</div>
+              <Badge variant="secondary" className="bg-blue-500/20 text-blue-400 border-blue-500/30">
                 {skill.level}%
               </Badge>
             </div>
@@ -441,40 +366,20 @@ export default function SkillsSection() {
   const selectedCategoryData = skillsCategories.find(cat => cat.id === selectedCategory);
 
   return (
-    <section id="skills" className="container mx-auto max-w-7xl px-4 py-20">
-      <AnimatedHeading 
-        text="MY SKILLS" 
-        className="mb-12 text-center text-4xl font-bold tracking-wider sm:text-5xl text-black dark:text-white" 
-      />
-      
-      <div className="text-center mb-16">
-        <div className="w-20 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full mx-auto mb-6"></div>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12">
-          Technologies and tools I use to bring ideas to life
-        </p>
-      </div>
+    <section id="skills" className="bg-gray-950 py-20 min-h-screen">
+      <div className="container mx-auto max-w-7xl px-4">
+        <div className="text-center mb-16">
+          <AnimatedHeading 
+            text="MY SKILLS" 
+            className="text-4xl font-bold tracking-wider text-white mb-4" 
+          />
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full mx-auto mb-6"></div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Technologies and tools I use to bring ideas to life
+          </p>
+        </div>
 
-        {/* Core Skills Logo Loop */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Core Technologies
-          </h3>
-          <div className="relative py-8">
-            <LogoLoop
-              logos={coreSkillsLogos}
-              speed={80}
-              direction="left"
-              logoHeight={56}
-              gap={48}
-              pauseOnHover
-              scaleOnHover
-              fadeOut
-              fadeOutColor="hsl(var(--background))"
-              ariaLabel="Core technologies and skills"
-              className="py-4"
-            />
-          </div>
-        </div>      {/* Category Tabs */}
+        {/* Category Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {skillsCategories.map((category) => (
             <button
@@ -484,13 +389,13 @@ export default function SkillsSection() {
                 flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300
                 ${selectedCategory === category.id 
                   ? `${category.color} text-white shadow-lg scale-105` 
-                  : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50'
+                  : 'bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-white'
                 }
               `}
             >
               {category.icon}
               <span>{category.title}</span>
-              <Badge variant="secondary" className="bg-background/20 text-current border-current/20">
+              <Badge variant="secondary" className="bg-black/20 text-current border-current/20">
                 {category.skills.length}
               </Badge>
             </button>
@@ -500,10 +405,10 @@ export default function SkillsSection() {
         {/* Selected Category Description */}
         {selectedCategoryData && (
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold text-white mb-2">
               {selectedCategoryData.title}
             </h3>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-gray-400 text-lg">
               {selectedCategoryData.description}
             </p>
           </div>
@@ -525,30 +430,68 @@ export default function SkillsSection() {
         </div>
 
         {/* Category Stats */}
-        <div className="mt-16 bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-2xl border border-primary/10 shadow-xl p-8">
+        <div className="mt-16 bg-gray-900/80 backdrop-blur-xl rounded-2xl border border-gray-700/50 shadow-xl p-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <div className="text-3xl font-bold text-white mb-2">
                 {selectedCategoryData?.skills.length || 0}
               </div>
-              <div className="text-muted-foreground">Technologies</div>
+              <div className="text-gray-400">Technologies</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <div className="text-3xl font-bold text-white mb-2">
                 {selectedCategoryData ? 
                   Math.round(selectedCategoryData.skills.reduce((acc, skill) => acc + skill.level, 0) / selectedCategoryData.skills.length) 
                   : 0}%
               </div>
-              <div className="text-muted-foreground">Average Proficiency</div>
+              <div className="text-gray-400">Average Proficiency</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-pink-600 to-red-600 bg-clip-text text-transparent">
+              <div className="text-3xl font-bold text-white mb-2">
                 {selectedCategoryData?.skills.filter(skill => skill.level >= 85).length || 0}
               </div>
-              <div className="text-muted-foreground">Expert Level</div>
+              <div className="text-gray-400">Expert Level</div>
             </div>
           </div>
         </div>
+
+        {/* Overall Summary */}
+        <div className="mt-16 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="group">
+              <div className="w-16 h-16 mx-auto bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform mb-4">
+                <span className="text-2xl font-bold text-white">6</span>
+              </div>
+              <div className="text-lg font-semibold text-white">Categories</div>
+              <div className="text-sm text-gray-400">Skill areas</div>
+            </div>
+            
+            <div className="group">
+              <div className="w-16 h-16 mx-auto bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform mb-4">
+                <span className="text-2xl font-bold text-white">{skillsCategories.reduce((acc, cat) => acc + cat.skills.length, 0)}</span>
+              </div>
+              <div className="text-lg font-semibold text-white">Technologies</div>
+              <div className="text-sm text-gray-400">And growing</div>
+            </div>
+            
+            <div className="group">
+              <div className="w-16 h-16 mx-auto bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform mb-4">
+                <span className="text-2xl font-bold text-white">3+</span>
+              </div>
+              <div className="text-lg font-semibold text-white">Years</div>
+              <div className="text-sm text-gray-400">Experience</div>
+            </div>
+            
+            <div className="group">
+              <div className="w-16 h-16 mx-auto bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform mb-4">
+                <span className="text-2xl font-bold text-white">∞</span>
+              </div>
+              <div className="text-lg font-semibold text-white">Passion</div>
+              <div className="text-sm text-gray-400">Level</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

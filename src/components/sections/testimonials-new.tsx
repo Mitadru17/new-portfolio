@@ -110,7 +110,7 @@ export default function TestimonialsSection() {
       <div className="mb-16 text-center">
         <AnimatedHeading 
           text="WHAT OTHERS SAY" 
-          className="mb-12 text-center text-4xl font-bold tracking-wider sm:text-5xl text-foreground" 
+          className="mb-12 text-center text-4xl font-bold tracking-wider sm:text-5xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent" 
         />
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12">
           Hear from colleagues, clients, and collaborators about their experience working with me

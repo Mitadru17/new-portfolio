@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import AnimatedHeading from "@/components/animated-heading";
 import LogoLoop from "@/components/LogoLoop";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { 
   Cpu, Gamepad2, Lightbulb, Rocket, Clapperboard, Code, 
   Database, Globe, Zap, Brain, BarChart3, GitBranch,
@@ -177,6 +178,25 @@ export default function AboutSection() {
       />
 
       <div className="mx-auto max-w-4xl text-center mb-16">
+        {/* Profile Avatar */}
+        <div className="flex justify-center mb-8">
+          <div className="relative">
+            <Avatar className="w-32 h-32 ring-4 ring-primary/20 shadow-2xl">
+              <AvatarImage 
+                src="/images/mitadru-profile.jpg" 
+                alt="Mitadru Roy" 
+                className="object-cover"
+              />
+              <AvatarFallback className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white text-2xl font-bold">
+                MR
+              </AvatarFallback>
+            </Avatar>
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-background flex items-center justify-center">
+              <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+
         <p className="mb-8 text-lg text-muted-foreground leading-relaxed">
           I'm <span className="text-blue-400 font-semibold">Mitadru Roy</span>, a{' '}
           <span className="text-purple-400 font-semibold">19-year-old aspiring Full Stack Web Developer</span> from{' '}

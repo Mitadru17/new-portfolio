@@ -137,7 +137,7 @@ export default function ExperienceSection() {
       <div className="container mx-auto max-w-6xl px-4">
         <AnimatedHeading 
           text="MY JOURNEY" 
-          className="mb-8 text-center text-4xl font-bold tracking-wider sm:text-5xl bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent" 
+          className="mb-8 text-center text-4xl font-bold tracking-wider sm:text-5xl text-foreground" 
         />
         
         <p className="mb-12 text-center text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -189,7 +189,7 @@ export default function ExperienceSection() {
         {activeTab === 'experience' && (
           <div className="space-y-8">
             <h3 className="text-3xl font-bold text-center mb-8 text-foreground">
-              Work Experience <span className="text-muted-foreground text-lg">(The Plot Thickens)</span>
+              Project Experience <span className="text-muted-foreground text-lg">(The Plot Thickens)</span>
             </h3>
             
             {workExperience.map((job, index) => (
