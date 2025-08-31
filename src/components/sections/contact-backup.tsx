@@ -27,9 +27,9 @@ const formSchema = z.object({
 });
 
 const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/mitadruroy" },
-  { icon: Github, label: "GitHub", href: "https://github.com/mitadruroy" },
-  { icon: FileText, label: "Resume", href: "/Mitadru_Roy_CV.pdf", download: true },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mitadruroy/" },
+  { icon: Github, label: "GitHub", href: "https://github.com/mitadru17" },
+  { icon: FileText, label: "Resume", href: "https://drive.google.com/file/d/1mek2y9YHuuh9_SVELh_aFveO1iAxhFah/view?usp=sharing", download: true },
 ];
 
 export default function ContactSection() {

@@ -177,8 +177,9 @@ export default function WorkSection() {
             <div className="flex gap-4 pt-6">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
-                    <Github className="mr-2 h-4 w-4" />
+                  <Button size="lg" className="group relative bg-gradient-to-r from-blue-500 via-purple-600 to-blue-600 hover:from-purple-600 hover:via-blue-600 hover:to-purple-700 text-white overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                    <Github className="mr-2 h-4 w-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
                     View All Projects
                   </Button>
                 </DialogTrigger>
@@ -259,10 +260,10 @@ export default function WorkSection() {
                 </DialogContent>
               </Dialog>
               
-              <Button variant="outline" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild className="group border-2 border-primary/20 bg-background/50 hover:bg-gradient-to-r hover:from-primary/10 hover:via-accent/10 hover:to-primary/10 hover:border-primary/60 backdrop-blur-sm transition-all duration-500 hover:shadow-lg hover:shadow-primary/20 hover:scale-105">
                 <a href="#contact">
-                  <Eye className="mr-2 h-4 w-4" />
-                  Let's Collaborate
+                  <Eye className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:text-primary transition-all duration-300" />
+                  <span className="group-hover:text-primary transition-colors duration-300">Let's Collaborate</span>
                 </a>
               </Button>
             </div>
@@ -327,8 +328,9 @@ export default function WorkSection() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="default" size="lg">
-                    <Eye className="mr-2 h-4 w-4" />
+                  <Button variant="default" size="lg" className="group relative bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 hover:from-pink-600 hover:via-purple-600 hover:to-pink-700 text-white overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/25 hover:scale-105">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                    <Eye className="mr-2 h-4 w-4 group-hover:scale-110 transition-all duration-300" />
                     View All Projects
                   </Button>
                 </DialogTrigger>
@@ -409,16 +411,16 @@ export default function WorkSection() {
                 </DialogContent>
               </Dialog>
 
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="group border-2 border-accent/20 bg-background/50 hover:bg-gradient-to-r hover:from-accent/10 hover:via-blue-500/10 hover:to-accent/10 hover:border-accent/60 backdrop-blur-sm transition-all duration-500 hover:shadow-lg hover:shadow-accent/20 hover:scale-105">
                 <a href="https://github.com/mitadru17" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub Portfolio
+                  <Github className="mr-2 h-4 w-4 group-hover:rotate-12 group-hover:scale-110 group-hover:text-accent transition-all duration-300" />
+                  <span className="group-hover:text-accent transition-colors duration-300">GitHub Portfolio</span>
                 </a>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="group border-2 border-primary/20 bg-background/50 hover:bg-gradient-to-r hover:from-primary/10 hover:via-purple-500/10 hover:to-primary/10 hover:border-primary/60 backdrop-blur-sm transition-all duration-500 hover:shadow-lg hover:shadow-primary/20 hover:scale-105">
                 <a href="#contact">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Get In Touch
+                  <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-1 group-hover:scale-110 group-hover:text-primary transition-all duration-300" />
+                  <span className="group-hover:text-primary transition-colors duration-300">Get In Touch</span>
                 </a>
               </Button>
             </div>

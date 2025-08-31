@@ -52,11 +52,6 @@ export default function HeroSection() {
     contactSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleDownloadCV = () => {
-    // Placeholder for CV download functionality
-    console.log('Download CV clicked');
-  };
-
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -142,28 +137,35 @@ export default function HeroSection() {
               <Button 
                 onClick={scrollToWork}
                 size="lg" 
-                className="group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white hover-lift mobile-full sm:w-auto"
+                className="group relative bg-gradient-to-r from-primary via-purple-600 to-primary/80 hover:from-purple-600 hover:via-primary hover:to-accent text-white hover-lift mobile-full sm:w-auto overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-primary/25"
               >
-                <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:scale-110 transition-all duration-300" />
                 View My Projects
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
                 onClick={scrollToContact}
-                className="hover-lift mobile-full sm:w-auto"
+                className="group relative border-2 border-primary/20 bg-background/50 hover:bg-gradient-to-r hover:from-primary/10 hover:via-accent/10 hover:to-primary/10 hover:border-primary/60 backdrop-blur-sm hover-lift mobile-full sm:w-auto transition-all duration-500 hover:shadow-lg hover:shadow-primary/20"
               >
-                <Mail className="mr-2 h-4 w-4" />
-                Let's Connect
+                <Mail className="mr-2 h-4 w-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 group-hover:text-primary" />
+                <span className="group-hover:text-primary transition-colors duration-300">Let's Connect</span>
               </Button>
               <Button 
+                asChild
                 variant="outline" 
                 size="lg"
-                onClick={handleDownloadCV}
-                className="hover-lift mobile-full sm:w-auto"
+                className="group relative border-2 border-accent/20 bg-background/50 hover:bg-gradient-to-r hover:from-accent/10 hover:via-primary/10 hover:to-accent/10 hover:border-accent/60 backdrop-blur-sm hover-lift mobile-full sm:w-auto transition-all duration-500 hover:shadow-lg hover:shadow-accent/20"
               >
-                <Download className="mr-2 h-4 w-4" />
-                Download CV
+                <a 
+                  href="https://drive.google.com/file/d/1mek2y9YHuuh9_SVELh_aFveO1iAxhFah/view?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Download className="mr-2 h-4 w-4 group-hover:translate-y-1 group-hover:scale-110 transition-all duration-300 group-hover:text-accent" />
+                  <span className="group-hover:text-accent transition-colors duration-300">Download CV</span>
+                </a>
               </Button>
             </div>
 
@@ -199,11 +201,11 @@ export default function HeroSection() {
             variant="ghost"
             size="sm"
             onClick={scrollToWork}
-            className="group animate-bounce hover:animate-none transition-all"
+            className="group animate-bounce hover:animate-none transition-all duration-500 hover:bg-gradient-to-r hover:from-primary/10 hover:via-accent/10 hover:to-primary/10 hover:shadow-lg hover:shadow-primary/20 rounded-full px-6 py-4 border border-transparent hover:border-primary/20"
           >
             <div className="flex flex-col items-center gap-2">
-              <span className="text-xs sm:text-sm font-medium tracking-wider mobile-text-sm">Explore My Projects</span>
-              <ChevronDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
+              <span className="text-xs sm:text-sm font-medium tracking-wider mobile-text-sm group-hover:text-primary transition-colors duration-300">Explore My Projects</span>
+              <ChevronDown className="h-4 w-4 group-hover:translate-y-1 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
             </div>
           </Button>
         </div>

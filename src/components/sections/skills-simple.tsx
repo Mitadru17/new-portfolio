@@ -71,7 +71,7 @@ const coreSkillsLogos = [
   { 
     node: <SiGithub style={{ color: '#181717' }} />, 
     title: "GitHub", 
-    href: "https://github.com" 
+    href: "https://github.com/mitadru17" 
   },
   { 
     node: <VscCode style={{ color: '#007ACC' }} />, 
