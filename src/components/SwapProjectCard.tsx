@@ -15,6 +15,7 @@ interface SwapProjectCardProps {
   githubUrl?: string;
   liveUrl?: string;
   featured?: boolean;
+  comingSoon?: boolean;
 }
 
 const SwapProjectCard: React.FC<SwapProjectCardProps> = ({
@@ -27,6 +28,7 @@ const SwapProjectCard: React.FC<SwapProjectCardProps> = ({
   githubUrl,
   liveUrl,
   featured = false,
+  comingSoon = false,
 }) => {
   return (
     <div className="relative w-full h-full p-6 overflow-hidden group cursor-pointer">
@@ -45,12 +47,19 @@ const SwapProjectCard: React.FC<SwapProjectCardProps> = ({
       <div className="relative z-10 h-full flex flex-col">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
-          {featured && (
-            <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full border border-yellow-500/30">
-              <Star className="w-3 h-3 text-yellow-500 fill-current" />
-              <span className="text-xs font-medium text-yellow-600 dark:text-yellow-400">Featured</span>
-            </div>
-          )}
+          <div className="flex gap-2">
+            {featured && (
+              <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full border border-yellow-500/30">
+                <Star className="w-3 h-3 text-yellow-500 fill-current" />
+                <span className="text-xs font-medium text-yellow-600 dark:text-yellow-400">Featured</span>
+              </div>
+            )}
+            {comingSoon && (
+              <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full border border-blue-500/30">
+                <span className="text-xs font-medium text-blue-600 dark:text-blue-400">🚀 Coming Soon</span>
+              </div>
+            )}
+          </div>
           <div className="flex gap-2 ml-auto">
             {githubUrl && (
               <Button 
@@ -65,7 +74,7 @@ const SwapProjectCard: React.FC<SwapProjectCardProps> = ({
                 <Github className="w-4 h-4" />
               </Button>
             )}
-            {liveUrl && (
+            {liveUrl && !comingSoon && (
               <Button 
                 size="sm" 
                 variant="ghost" 

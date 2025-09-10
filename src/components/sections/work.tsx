@@ -11,65 +11,136 @@ import { ExternalLink, Github, Eye, X } from "lucide-react";
 import { useState } from "react";
 
 const featuredProject = {
-  id: "ai-therapist",
-  title: "AI Therapist — Because Human Therapists Aren't Available 24/7",
-  role: "Full-Stack Developer & Digital Psychologist",
-  description: "Built an AI-powered mental health companion that listens to your problems better than your friends. Features personality-based therapeutic approaches and the patience of a saint (unlike real therapists who charge by the hour).",
-  tech: ["React.js", "Node.js", "OpenAI API", "WebRTC", "MongoDB", "Express.js"],
-  imageUrl: "https://placehold.co/1200x800.png",
-  imageHint: "AI therapy chat interface",
-  githubUrl: "https://github.com/mitadru17/ai-therapist",
-  liveUrl: "https://ai-therapist-demo.vercel.app",
+  id: "smart-care-assistant",
+  title: "🏥 Smart Care Assistant — Revolutionizing Healthcare for Small Clinics",
+  role: "Full-Stack Developer & Healthcare Technology Specialist",
+  description: "A comprehensive smart assistant platform built for small clinics and junior doctors to streamline patient management, detect early warning signs, and improve care in fast-paced, resource-limited environments. Features AI-powered ADR detection, voice-to-text input, and real-time analytics.",
+  tech: ["React.js", "Node.js", "Python", "Flask", "MongoDB", "Firebase", "Scikit-learn", "Chart.js", "Tailwind CSS"],
+  imageUrl: "/images/projects/smart-care-assistant.jpg",
+  imageHint: "healthcare dashboard with patient management",
+  githubUrl: "https://github.com/Mitadru17/AidX", // Add your actual GitHub URL
+  liveUrl: "https://aid-x-cyan.vercel.app/", // Add your actual live URL here
   featured: true,
+  comingSoon: false,
 };
 
 const otherProjects = [
   {
+    id: "ai-therapist",
+    title: "AI Therapist — Because Human Therapists Aren't Available 24/7",
+    role: "Full-Stack Developer & Digital Psychologist",
+    description: "Built an AI-powered mental health companion that listens to your problems better than your friends. Features personality-based therapeutic approaches and the patience of a saint (unlike real therapists who charge by the hour).",
+    tech: ["React.js", "Node.js", "OpenAI API", "WebRTC", "MongoDB", "Express.js"],
+    imageUrl: "/images/projects/ai-therapist.jpg",
+    imageHint: "AI therapy chat interface",
+    githubUrl: "https://github.com/Mitadru17/AI-Therapist",
+    liveUrl: "https://ai-therapist-7wxu.onrender.com/",
+    featured: true,
+    comingSoon: false,
+  },
+  {
     id: "greengrow-tech",
     title: "GreenGrow Tech — Making Agriculture Smart (Finally)",
     role: "Full-Stack Developer & Plant Whisperer",
-    description: "IoT-based crop monitoring system that knows more about your plants than you do. Features real-time monitoring, predictive analytics, and the ability to make farmers feel slightly less stressed about their crops.",
-    tech: ["React.js", "Node.js", "IoT Sensors", "MongoDB", "Chart.js", "Express.js"],
-    imageUrl: "https://placehold.co/1200x800.png",
+    description: "The website appears to focus on optimizing greenhouse farming through AI-driven solutions. It provides tools for smart irrigation, seeding/planting, climate control, crop monitoring, and data analytics to enhance agricultural productivity.",
+    tech: ["React Native"],
+    imageUrl: "/images/projects/greengrow-tech.jpg",
     imageHint: "smart farming dashboard",
-    githubUrl: "https://github.com/mitadru17/greengrow-tech",
-    liveUrl: "https://greengrow-tech-demo.vercel.app",
+    githubUrl: "https://github.com/Mitadru17/Green-Grow-Tech",
+    liveUrl: "https://greenhousefarming.great-site.net/", // Add your actual live URL here
     featured: false,
+    comingSoon: false,
+  },
+  {
+    id: "dev-portfolio",
+    title: "Dev Portfolio — Excited to launch my new developer portfolio",
+    role: "Front-End Developer & Designer",
+    description: "A highlights my skills, projects, and experience in an interactive and visually engaging environment. Built with React Native, Next.js, and Tailwind CSS, focusing on performance, accessibility, and user experience.",
+    tech: ["React Native", "Next.js", "Tailwind CSS", "TypeScript"],
+    imageUrl: "/images/projects/dev-portfolio.jpg",
+    imageHint: "developer portfolio showcase",
+    githubUrl: "https://github.com/Mitadru17/portfolio", // Add your actual GitHub URL
+    liveUrl: "https://portfoliomitadru.vercel.app/", // Add your actual live URL here
+    featured: false,
+    comingSoon: false,
+  },
+  {
+    id: "myntra-clone",
+    title: "Myntra Functional Clone by Mitadru",
+    role: "Full-Stack Developer & E-commerce Expert",
+    description: "Boutique Myntra Clone: Get a glimpse of the world of fashion with this wonderful, responsive e-commerce site in HTML, CSS and Bootstrap. It reflects my skills in front-end development and user-centered design.",
+    tech: ["HTML", "Cascading Style Sheets (CSS)", "JavaScript"],
+    imageUrl: "/images/projects/myntra-clone.jpg",
+    imageHint: "myntra clone e-commerce",
+    githubUrl: "https://github.com/Mitadru17/Myntra-Clone-", // Add your actual GitHub URL
+    liveUrl: "https://www.myntra.com/", // Add your actual live URL here
+    featured: false,
+    comingSoon: false,
+  },
+  {
+    id: "spotify-clone",
+    title: "Spotify — Web Player Music by Mitadru",
+    role: "Full-Stack Developer & Music Tech Enthusiast",
+    description: "Built an updated version of the original Spotify Clone for Music Streaming – Learn web design with HTML and CSS. Responsive design. It's a brain of fresh air and an indication of my passion for front-end development.",
+    tech: ["HTML", "Cascading Style Sheets (CSS)", "JavaScript"],
+    imageUrl: "/images/projects/spotify-clone.jpg",
+    imageHint: "spotify music streaming clone",
+    githubUrl: "https://github.com/Mitadru17/Spotify-clone-", // Add your actual GitHub URL
+    liveUrl: "https://open.spotify.com/", // Add your actual live URL here
+    featured: false,
+    comingSoon: false,
+  },
+  {
+    id: "swiggy-clone",
+    title: "Swiggy Clone by Mitadru",
+    role: "Front-End Developer & Food Tech Specialist",
+    description: "Savour the taste of web development by relishing my Swiggy Clone – an intuitive, responsive food delivery platform designed with the use of HTML and CSS. This is a great reflection of my love for seamless experiences while working on front-end development.",
+    tech: ["HTML", "Cascading Style Sheets (CSS)"],
+    imageUrl: "/images/projects/swiggy-clone.jpg",
+    imageHint: "swiggy food delivery clone",
+    githubUrl: "https://github.com/Mitadru17/Swiggy-Clone-", // Add your actual GitHub URL
+    liveUrl: "https://www.swiggy.com/", // Add your actual live URL here
+    featured: false,
+    comingSoon: false,
   },
   {
     id: "upfeet",
-    title: "UpFeet — E-commerce That Actually Works",
-    role: "Full-Stack Developer & Digital Shopkeeper",
-    description: "Complete e-commerce platform with all the bells and whistles. Admin panels, user dashboards, and payment integration that doesn't make customers want to abandon their carts.",
-    tech: ["React.js", "Node.js", "MongoDB", "Stripe API", "JWT", "Express.js"],
-    imageUrl: "https://placehold.co/1200x800.png",
-    imageHint: "e-commerce platform",
-    githubUrl: "https://github.com/mitadru17/upfeet",
-    liveUrl: "https://upfeet-demo.vercel.app",
-    featured: false,
+    title: "UpFeet - Techwise Footwear",
+    role: "Full-Stack Developer & E-commerce Architect",
+    description: "UpFeet: A next-gen sneaker eCommerce platform designed for style-conscious sneaker lovers. From dynamic product filtering, to engaging shopping experiences in foot-wear, it's a brain of fresh air and an indication of my passion for front-end development.",
+    tech: ["React Native", "TypeScript", "Express.js", "Tailwind CSS"],
+    imageUrl: "/images/projects/upfeet.jpg",
+    imageHint: "upfeet sneaker e-commerce",
+    githubUrl: "https://github.com/mitadru17/upfeet", // Add your actual GitHub URL
+    liveUrl: "https://up-feet.vercel.app/", // Add your actual live URL here
+    featured: true,
+    comingSoon: false,
   },
   {
-    id: "portfolio-evolution",
-    title: "Portfolio Website — Meta, Right?",
-    role: "Full-Stack Developer & Self-Promoter",
-    description: "The website you're currently browsing. A showcase of sarcasm, clean code, and the ability to talk about myself in third person. Features animations that don't make your eyes hurt.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP"],
-    imageUrl: "https://placehold.co/1200x800.png",
-    imageHint: "portfolio website",
-    githubUrl: "https://github.com/mitadru17/portfolio",
-    liveUrl: "https://mitadru-portfolio.vercel.app",
+    id: "glowminal",
+    title: "✨ Glowminal — Minimalist Skincare Meets Seamless Digital Experience",
+    role: "Full-Stack Developer & Brand-Tech Specialist",
+    description: "A modern e-commerce platform crafted for a skincare brand, integrating minimalist design with robust technology to deliver a seamless user journey. Features secure authentication, dynamic product showcase, admin dashboard, and mobile-first design built to scale.",
+    tech: ["React.js", "Node.js", "Next.js", "Supabase", "Firebase", "Tailwind CSS", "Stripe", "Figma"],
+    imageUrl: "/images/projects/glowminal.jpg",
+    imageHint: "glowminal skincare e-commerce platform",
+    githubUrl: "https://github.com/Mitadru17/Glowminal", // Add your actual GitHub URL
+    liveUrl: "", // Coming soon - no live URL yet
     featured: false,
+    comingSoon: true,
   },
   {
-    id: "freelance-adventures",
-    title: "Various Client Projects — Solving Problems for Money",
-    role: "Freelance Developer & Problem Solver",
-    description: "Collection of client projects ranging from landing pages to complex web applications. Taught me that scope creep is real and deadlines are more like... suggestions.",
-    tech: ["React.js", "Node.js", "WordPress", "PHP", "MySQL", "JavaScript"],
-    imageUrl: "https://placehold.co/1200x800.png",
-    imageHint: "client projects showcase",
-    githubUrl: "https://github.com/mitadru17/client-projects",
-    featured: false,
+    id: "xhanium-agency",
+    title: "🚀 Xhanium - Digital Innovation Agency (Founder & Lead Developer)",
+    role: "Founder & Full-Stack Developer",
+    description: "A modern, high-performance website for Xhanium Digital Agency built with cutting-edge technologies. Features optimized performance, mobile-first design, integrated booking system, and comprehensive SEO optimization. As the founder, I led the complete development and business strategy.",
+    tech: ["Next.js 13", "TypeScript", "Tailwind CSS", "Framer Motion", "Radix UI", "Cal.com", "React Hook Form", "Zod"],
+    imageUrl: "/images/projects/xhanium-agency.jpg",
+    imageHint: "xhanium digital agency website",
+    githubUrl: "https://github.com/Mitadru17/xhanium", // Add your actual GitHub URL
+    liveUrl: "https://xhanium.in", // Add your actual live URL here
+    featured: true,
+    comingSoon: false,
   },
 ];
 
@@ -116,12 +187,18 @@ const ProjectModal = ({ project }: { project: typeof featuredProject }) => (
           </a>
         </Button>
       )}
-      {project.liveUrl && (
+      {project.liveUrl && !project.comingSoon && (
         <Button asChild size="sm">
           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
             <ExternalLink className="mr-2 h-4 w-4" />
             Live Demo
           </a>
+        </Button>
+      )}
+      {project.comingSoon && (
+        <Button disabled size="sm" className="opacity-60">
+          <ExternalLink className="mr-2 h-4 w-4" />
+          Coming Soon
         </Button>
       )}
     </div>
@@ -203,9 +280,16 @@ export default function WorkSection() {
                             alt={project.imageHint}
                             className="w-full h-48 object-cover rounded-md"
                           />
-                          <Badge className={`absolute top-2 right-2 ${project.featured ? 'bg-yellow-500' : 'bg-blue-500'}`}>
-                            {project.featured ? '⭐ Featured' : 'Project'}
-                          </Badge>
+                          <div className="absolute top-2 right-2 flex gap-2">
+                            <Badge className={`${project.featured ? 'bg-yellow-500' : 'bg-blue-500'}`}>
+                              {project.featured ? '⭐ Featured' : 'Project'}
+                            </Badge>
+                            {project.comingSoon && (
+                              <Badge className="bg-purple-500">
+                                🚀 Coming Soon
+                              </Badge>
+                            )}
+                          </div>
                         </div>
                         
                         <h4 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
@@ -307,6 +391,7 @@ export default function WorkSection() {
                     githubUrl={project.githubUrl}
                     liveUrl={project.liveUrl}
                     featured={project.featured}
+                    comingSoon={project.comingSoon}
                   />
                 </Card>
               ))}
@@ -354,9 +439,16 @@ export default function WorkSection() {
                             alt={project.imageHint}
                             className="w-full h-48 object-cover rounded-md"
                           />
-                          <Badge className={`absolute top-2 right-2 ${project.featured ? 'bg-yellow-500' : 'bg-blue-500'}`}>
-                            {project.featured ? '⭐ Featured' : 'Project'}
-                          </Badge>
+                          <div className="absolute top-2 right-2 flex gap-2">
+                            <Badge className={`${project.featured ? 'bg-yellow-500' : 'bg-blue-500'}`}>
+                              {project.featured ? '⭐ Featured' : 'Project'}
+                            </Badge>
+                            {project.comingSoon && (
+                              <Badge className="bg-purple-500">
+                                🚀 Coming Soon
+                              </Badge>
+                            )}
+                          </div>
                         </div>
                         
                         <h4 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
@@ -393,7 +485,7 @@ export default function WorkSection() {
                               </a>
                             </Button>
                           )}
-                          {project.liveUrl && (
+                          {project.liveUrl && !project.comingSoon && (
                             <Button 
                               asChild 
                               size="sm"
@@ -402,6 +494,16 @@ export default function WorkSection() {
                               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="h-3 w-3" />
                               </a>
+                            </Button>
+                          )}
+                          {project.comingSoon && (
+                            <Button 
+                              disabled 
+                              size="sm"
+                              className="opacity-60"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <ExternalLink className="h-3 w-3" />
                             </Button>
                           )}
                         </div>

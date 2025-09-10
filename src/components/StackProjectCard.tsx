@@ -15,6 +15,7 @@ interface StackProjectCardProps {
   githubUrl?: string;
   liveUrl?: string;
   featured?: boolean;
+  comingSoon?: boolean;
 }
 
 const StackProjectCard: React.FC<StackProjectCardProps> = ({
@@ -27,6 +28,7 @@ const StackProjectCard: React.FC<StackProjectCardProps> = ({
   githubUrl,
   liveUrl,
   featured = false,
+  comingSoon = false,
 }) => {
   return (
     <div className={`relative rounded-2xl overflow-hidden shadow-2xl bg-card/95 backdrop-blur-sm border border-border/50 ${
@@ -45,13 +47,18 @@ const StackProjectCard: React.FC<StackProjectCardProps> = ({
 
       {/* Content */}
       <div className="relative z-10 p-8 h-full flex flex-col">
-        {featured && (
-          <div className="mb-4">
+        <div className="flex gap-2 mb-4">
+          {featured && (
             <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
               Featured Project
             </Badge>
-          </div>
-        )}
+          )}
+          {comingSoon && (
+            <Badge variant="secondary" className="bg-purple-500/20 text-purple-600 border-purple-500/30">
+              🚀 Coming Soon
+            </Badge>
+          )}
+        </div>
 
         <div className="flex-1">
           <h3 className="text-2xl font-bold mb-2 text-foreground">{title}</h3>
@@ -80,10 +87,16 @@ const StackProjectCard: React.FC<StackProjectCardProps> = ({
               Code
             </Button>
           )}
-          {liveUrl && (
+          {liveUrl && !comingSoon && (
             <Button size="sm" className="flex items-center gap-2">
               <ExternalLink className="w-4 h-4" />
               Live Demo
+            </Button>
+          )}
+          {comingSoon && (
+            <Button disabled size="sm" className="flex items-center gap-2 opacity-60">
+              <ExternalLink className="w-4 h-4" />
+              Coming Soon
             </Button>
           )}
         </div>
