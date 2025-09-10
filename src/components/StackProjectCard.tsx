@@ -40,14 +40,16 @@ const StackProjectCard: React.FC<StackProjectCardProps> = ({
           src={imageUrl}
           alt={imageHint}
           fill
-          className="object-cover opacity-20"
+          className="object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/70 to-background/85" />
+        {/* Additional bottom gradient for text area */}
+        <div className="absolute bottom-0 left-0 right-0 h-3/4 bg-gradient-to-t from-background/95 via-background/60 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 p-8 h-full flex flex-col">
-        <div className="flex gap-2 mb-4">
+      <div className="relative z-10 p-8 h-full flex flex-col backdrop-blur-sm">
+        <div className="flex gap-2 mb-4 backdrop-blur-sm bg-background/30 rounded-lg p-3 border border-border/20">
           {featured && (
             <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
               Featured Project
@@ -60,10 +62,10 @@ const StackProjectCard: React.FC<StackProjectCardProps> = ({
           )}
         </div>
 
-        <div className="flex-1">
-          <h3 className="text-2xl font-bold mb-2 text-foreground">{title}</h3>
-          <p className="text-primary/80 font-medium mb-4">{role}</p>
-          <p className="text-muted-foreground leading-relaxed mb-6">{description}</p>
+        <div className="flex-1 backdrop-blur-sm bg-background/30 rounded-lg p-4 border border-border/20">
+          <h3 className="text-2xl font-bold mb-2 text-foreground drop-shadow-sm">{title}</h3>
+          <p className="text-primary/90 font-medium mb-4 drop-shadow-sm">{role}</p>
+          <p className="text-muted-foreground leading-relaxed mb-6 drop-shadow-sm">{description}</p>
 
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-2 mb-6">
@@ -71,7 +73,7 @@ const StackProjectCard: React.FC<StackProjectCardProps> = ({
               <Badge 
                 key={techItem} 
                 variant="outline" 
-                className="bg-background/50 border-primary/20 text-foreground/80 hover:bg-primary/10 transition-colors"
+                className="bg-background/70 border-primary/30 text-foreground/90 hover:bg-primary/20 transition-colors backdrop-blur-sm"
               >
                 {techItem}
               </Badge>

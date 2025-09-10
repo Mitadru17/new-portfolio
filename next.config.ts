@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    unoptimized: true, // This can help with local development issues
   },
 };
 

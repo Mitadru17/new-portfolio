@@ -38,9 +38,12 @@ const SwapProjectCard: React.FC<SwapProjectCardProps> = ({
           src={imageUrl}
           alt={imageHint}
           fill
-          className="object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+          className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-300"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/85 to-background/90" />
+        {/* Stronger gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/70 to-background/85" />
+        {/* Additional bottom gradient for text area */}
+        <div className="absolute bottom-0 left-0 right-0 h-3/4 bg-gradient-to-t from-background/95 via-background/60 to-transparent" />
       </div>
 
       {/* Content */}
@@ -91,26 +94,26 @@ const SwapProjectCard: React.FC<SwapProjectCardProps> = ({
         </div>
 
         {/* Project Info */}
-        <div className="flex-1">
-          <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
+        <div className="flex-1 backdrop-blur-sm bg-background/30 rounded-lg p-4 border border-border/20">
+          <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2 drop-shadow-sm">
             {title}
           </h3>
-          <p className="text-sm text-primary/80 font-medium mb-3 line-clamp-1">
+          <p className="text-sm text-primary/90 font-medium mb-3 line-clamp-1 drop-shadow-sm">
             {role}
           </p>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3 drop-shadow-sm">
             {description}
           </p>
         </div>
 
         {/* Tech Stack */}
-        <div className="mt-auto">
+        <div className="mt-auto backdrop-blur-sm bg-background/30 rounded-lg p-3 border border-border/20">
           <div className="flex flex-wrap gap-1.5">
             {tech.slice(0, 4).map((techItem) => (
               <Badge 
                 key={techItem} 
                 variant="secondary" 
-                className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
+                className="text-xs px-2 py-0.5 bg-primary/20 text-primary border-primary/30 hover:bg-primary/30 transition-colors backdrop-blur-sm"
               >
                 {techItem}
               </Badge>
@@ -118,7 +121,7 @@ const SwapProjectCard: React.FC<SwapProjectCardProps> = ({
             {tech.length > 4 && (
               <Badge 
                 variant="outline" 
-                className="text-xs px-2 py-0.5 text-muted-foreground border-muted-foreground/30"
+                className="text-xs px-2 py-0.5 text-muted-foreground border-muted-foreground/40 bg-background/50"
               >
                 +{tech.length - 4} more
               </Badge>
